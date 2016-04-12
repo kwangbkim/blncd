@@ -1,0 +1,16 @@
+{
+  "name": "balanced",
+  "version": "1.0.0",
+  "description": "another todo app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kwang kim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongodb": "^2.1.16",
+    "nconf": "^0.8.4"
+  }
+}

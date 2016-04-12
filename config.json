@@ -1,0 +1,9 @@
+{
+  "mongo": {
+    "url": "mongodb://bkwangkim:browny3@ds061258.mlab.com:61258/balanced",
+    "username": "bkwangkim"
+  },
+  "server": {
+    "port": 3000
+  }
+}
