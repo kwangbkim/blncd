@@ -1,19 +1,15 @@
-var nconf = require('nconf'),
+var props = require('./properties.js'),
     config = require('./config'),
     mongoClient = require('mongodb').MongoClient,
     assert = require('assert');
 
-nconf.argv()
-  .env()
-  .file({ file: './config.json' });
-
 var _db;
-var url = nconf.get("mongo:url");
+var url = props.get("mongo:url");
 
 module.exports = {
   connectToServer: function(callback) {
     mongoClient.connect(url, function(err, db) {
-      db.authenticate(nconf.get("mongo:username"), nconf.get("BALANCED_DB_PASSWORD"), function(err, result) {
+      db.authenticate(props.get("mongo:username"), props.get("BALANCED_DB_PASSWORD"), function(err, result) {
         _db = db;
         return callback(err);
       });

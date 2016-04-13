@@ -1,58 +1,63 @@
 var fs = require('fs'),
-    nconf = require('nconf'),
     express = require('express'),
-    mongo = require('./mongoUtil')
+    mongodb = require('mongodb');
     assert = require('assert'),
-    bodyParser = require('body-parser');
-
-nconf.argv()
-  .env()
-  .file({ file: './config.json' });
+    bodyParser = require('body-parser'),
+    mongo = require('./mongoUtil'),
+    props = require('./properties');
 
 var app = express();
-app.listen(nconf.get("server:port"), function() {
-  console.log("listening on port ".concat(nconf.get("server:port")));
+app.listen(props.get("server:port"), function() {
+  console.log("listening on port ".concat(props.get("server:port")));
 })
 
 mongo.connectToServer(function(err) {
   var db = mongo.getDb();
-  findTasks(db, function() {
-    console.log("get endpoints initialized");
-  });
-  initPostEndpoint(db, function() {
-    console.log("post endpoints initialized");
-  });
-});
 
-function findTasks(db, callback) {
-  var cursor = db.collection('tasks').find();
-  cursor.each(function(err, task) {
-    assert.equal(err, null);
-    if (task != null) {
-      app.get("/".concat(task.type), function (req, res) {
-        db.collection('tasks').find({ 'type': task.type }).toArray(function(err, tasks) {
-          res.send(tasks);
-        });
-      });
-    } else {
-      callback();
-    }
+  app.get("/tasks/:type", function (req, res) {
+    db.collection('tasks').find({ 'type': req.params.type }).toArray(function(err, tasks) {
+      assert.equal(err, null);
+      res.send(tasks);
+    });
   });
-}
 
-function initPostEndpoint(db, callback) {
   app.post("/tasks", bodyParser.json(), function(req, res) {
+    console.log(req.body.description);
     db.collection('tasks').insertOne(
     {
-      "type": req.body.type,
-      "quadrant": req.body.quadrant,
       "description": req.body.description,
+      "quadrant": req.body.quadrant,
+      "type": req.body.type,
       "date": new Date()
     }, function (err, result) {
         assert.equal(err, null);
-        console.log("inserted new task");
+        console.log("inserted new task " + result);
     });
     res.end("OK");
   });
-  callback();
-}
+
+  app.get("/quadrants/:id", function (req, res) {
+    console.log(req.params.id);
+    db.collection('tasks').find({ 'quadrant': parseInt(req.params.id) }).toArray(function(err, tasks) {
+      assert.equal(err, null);
+      res.send(tasks);
+    });
+  });
+
+  app.delete('/tasks/:type', function(req, res) {
+    db.collection('tasks').remove({ 'type': req.params.type }, function (err, result) {
+      assert.equal(err, null);
+      res.send("OK");
+    });
+  });
+
+  app.delete('/tasks/:type/:id', function(req, res) {
+    db.collection('tasks', function(err, collection) {
+      assert.equal(err, null);
+      collection.remove({ _id: new mongodb.ObjectID(req.params.id) }, function (err, result) {
+        assert.equal(err, null);
+        res.send("OK");
+      });
+    });
+  });
+});
