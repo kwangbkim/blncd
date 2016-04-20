@@ -1,5 +1,4 @@
 var props = require('./properties.js'),
-    config = require('./config'),
     mongoClient = require('mongodb').MongoClient,
     assert = require('assert');
 
