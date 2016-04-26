@@ -2,9 +2,6 @@ var props = require('./properties'),
     quadrant = require('./get-quadrant'),
     sendgrid = require('sendgrid')(props.get('SENDGRID'));
 
-quadrant.getQuadrant("1", sendImportantUrgent);
-quadrant.getQuadrant("2", sendImportantNotUrgent);
-
 function sendImportantUrgent(body) {
     if (body) {
         sendgrid.send({
@@ -36,3 +33,6 @@ function sendImportantNotUrgent(body) {
         });
     }
 }
+
+quadrant.getQuadrant("1", sendImportantUrgent);
+quadrant.getQuadrant("2", sendImportantNotUrgent);

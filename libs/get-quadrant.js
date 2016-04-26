@@ -1,8 +1,9 @@
 var request = require('request'),
     assert = require('assert'),
-    props = require('./properties.js');
+    props = require('./properties'),
+    sf = require('./string-format');
 
-module.exports.getQuadrant = getQuadrant;
+sf.init();
 
 function getQuadrant(quadrant, callback) {
     var headers = {
@@ -10,7 +11,10 @@ function getQuadrant(quadrant, callback) {
     };
 
     var options = {
-        url: 'http://localhost:' + props.get('server:port') + '/quadrants/' + quadrant,
+        url: "http://{0}:{1}/quadrants/{2}".format(
+            props.get('BALANCED_SERVER'),
+            props.get('server:port'),
+            quadrant),
         method: 'GET'
     };
 
@@ -22,3 +26,5 @@ function getQuadrant(quadrant, callback) {
 }
 
 getQuadrant(process.argv[2], console.log);
+
+module.exports.getQuadrant = getQuadrant;

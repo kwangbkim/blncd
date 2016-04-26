@@ -1,8 +1,9 @@
 var request = require('request'),
     assert = require('assert'),
-    props = require('./properties.js');
+    props = require('./properties.js'),
+    sf = require('./string-format');
 
-module.exports.execute = execute;
+sf.init();
 
 function execute(taskType, callback) {
     var headers = {
@@ -10,7 +11,10 @@ function execute(taskType, callback) {
     };
 
     var options = {
-        url: 'http://localhost:' + props.get('server:port') + '/tasks/' + taskType,
+        url: "http://{0}:{1}/tasks/{2}".format(
+            props.get("BALANCED_SERVER"),
+            props.get('server:port'),
+            taskType),
         method: 'GET'
     };
 
@@ -21,3 +25,5 @@ function execute(taskType, callback) {
 }
 
 execute(process.argv[2], console.log);
+
+module.exports.execute = execute;

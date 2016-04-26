@@ -1,13 +1,18 @@
 var request = require('request'),
     assert = require('assert'),
-    props = require('./properties.js');
+    props = require('./properties.js'),
+    sf = require('./string-format');
+
+sf.init();
 
 var headers = {
     'Content-Type': 'application/json'
 };
 
 var options = {
-    url: 'http://localhost:' + props.get('server:port') + '/tasks/' + process.argv[2],
+    url: "http://{0}:{1}/tasks/{2}".format(
+        props.get('server:port'),
+        process.argv[2]),
     method: 'DELETE'
 };
 

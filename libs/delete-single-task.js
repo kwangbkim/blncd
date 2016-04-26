@@ -1,13 +1,20 @@
 var request = require('request'),
     assert = require('assert'),
-    props = require('./properties.js');
+    props = require('./properties'),
+    sf = require('./string-format');
+
+sf.init();
 
 var headers = {
     'Content-Type': 'application/json'
 };
 
 var options = {
-    url: 'http://localhost:' + props.get('server:port') + '/tasks/' + process.argv[2] + '/' + process.argv[3],
+    url: "http://{0}:{1}/tasks/{2}/{3}".format(
+        props.get("BALANCED_SERVER"),
+        props.get('server:port'),
+        process.argv[2],
+        process.argv[3]),
     method: 'DELETE'
 };
 
