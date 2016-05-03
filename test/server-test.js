@@ -1,5 +1,5 @@
-//  var assert = require('assert'),
-//      http   = require('http');
+// var assert = require('assert'),
+//     http   = require('http');
 //
 // var server;
 // describe('server', function () {

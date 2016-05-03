@@ -5,20 +5,23 @@ var request = require('request'),
 
 sf.init();
 
-var headers = {
-    'Content-Type': 'application/json'
-};
+function deleteSingle(id, callback) {
+    var headers = {
+        'Content-Type': 'application/json'
+    };
 
-var options = {
-    url: "http://{0}:{1}/tasks/{2}/{3}".format(
-        props.get("BALANCED_SERVER"),
-        props.get('server:port'),
-        process.argv[2],
-        process.argv[3]),
-    method: 'DELETE'
-};
+    var options = {
+        url: "http://{0}:{1}/tasks/{2}".format(
+            props.get("BALANCED_SERVER"),
+            props.get('server:port'),
+            id),
+        method: 'DELETE'
+    };
 
-request(options, function(err, res, body) {
-    assert.equal(err, null);
-    console.log(body);
-});
+    request(options, function(err, res, body) {
+        assert.equal(err, null);
+        callback(res);
+    });
+}
+
+module.exports = deleteSingle;

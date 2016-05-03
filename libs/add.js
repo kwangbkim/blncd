@@ -5,22 +5,27 @@ var request = require('request'),
 
 sf.init();
 
-var headers = {
-    'Content-Type': 'application/json'
-};
+function add(type, desc, quadrant, callback) {
+    var headers = {
+        'Content-Type': 'application/json'
+    };
 
-var options = {
-    url: "http://{0}:{1}/tasks".format(props.get('BALANCED_SERVER'), props.get('server:port')),
-    method: 'POST',
-    json: true,
-    body: {
-        type: process.argv[2],
-        description: process.argv[3],
-        quadrant: parseInt(process.argv[4])
-    }
-};
+    var options = {
+        url: "http://{0}:{1}/tasks".format(props.get('BALANCED_SERVER'), props.get('server:port')),
+        method: 'POST',
+        json: true,
+        body: {
+            type: type,
+            description: desc,
+            quadrant: parseInt(quadrant)
+        }
+    };
 
-request(options, function(err, res, body) {
-    assert.equal(err, null);
-    console.log(body);
-});
+    request(options, function(err, res, body) {
+        assert.equal(err, null);
+        console.log(body);
+        callback(res);
+    });
+}
+
+module.exports = add;

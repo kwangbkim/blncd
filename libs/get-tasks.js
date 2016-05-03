@@ -5,16 +5,15 @@ var request = require('request'),
 
 sf.init();
 
-function execute(taskType, callback) {
+function execute(callback) {
     var headers = {
         'Content-Type': 'application/json'
     };
 
     var options = {
-        url: "http://{0}:{1}/tasks/{2}".format(
+        url: "http://{0}:{1}/tasks".format(
             props.get("BALANCED_SERVER"),
-            props.get('server:port'),
-            taskType),
+            props.get('server:port')),
         method: 'GET'
     };
 
@@ -24,6 +23,4 @@ function execute(taskType, callback) {
     });
 }
 
-execute(process.argv[2], console.log);
-
-module.exports.execute = execute;
+module.exports = execute;

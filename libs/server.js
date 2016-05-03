@@ -1,93 +1,82 @@
 "use strict";
 var fs = require('fs'),
     express = require('express'),
-    mongodb = require('mongodb'),
+    mongoose = require('mongoose'),
     assert = require('assert'),
     bodyParser = require('body-parser'),
-    mongo = require('./mongo-util'),
     http = require('http'),
-    props = require('./properties');
+    props = require('./properties'),
+    freeFormRequest = require('./free-form'),
+    Task = require('./tasks');
 
 var app = express();
+mongoose.connect(props.get("mongo:url"));
 
-function initGetTasksByTypeEndpoint(db) {
-    app.get("/tasks/:type", function(req, res) {
-        db.collection('tasks').find({
-            'type': req.params.type
-        }).toArray(function(err, tasks) {
-            assert.equal(err, null);
-            res.send(tasks);
-        });
+app.get("/tasks", function(req, res) {
+    Task.find({}).sort('quadrant').exec(function (err, tasks) {
+        if (err) console.log(err);
+        res.send(tasks);
     });
-}
+});
 
-function initAddNewTaskEndpoint(db) {
-    app.post("/tasks", bodyParser.json(), function(req, res) {
-        console.log(req.body.description);
-        db.collection('tasks').insertOne({
-            "description": req.body.description,
-            "quadrant": req.body.quadrant,
-            "type": req.body.type,
-            "date": new Date()
-        }, function(err, result) {
-            assert.equal(err, null);
-            console.log("inserted new task " + result);
-        });
-        res.end("OK");
+app.get("/tasks/:type", function(req, res) {
+    Task.find({type: req.params.type}).sort('quadrant').exec(function (err, tasks) {
+        if (err) console.log(err);
+        res.send(tasks);
     });
-}
+});
 
-function initGetTasksByQuadrantEndpoint(db) {
-    app.get("/quadrants/:id", function(req, res) {
-        console.log(req.params.id);
-        db.collection('tasks').find({
-            'quadrant': parseInt(req.params.id, 10)
-        }).toArray(function(err, tasks) {
-            assert.equal(err, null);
-            res.send(tasks);
-        });
+app.post("/tasks", bodyParser.json(), function(req, res) {
+    console.log(req.body.description);
+    var task = new Task({
+        description: req.body.description,
+        quadrant: parseInt(req.body.quadrant),
+        type: req.body.type,
     });
-}
-
-function initDeleteTasksByTypeEndpoint(db) {
-    app.delete('/tasks/:type', function(req, res) {
-        db.collection('tasks').remove({
-            'type': req.params.type
-        }, function(err, result) {
-            assert.equal(err, null);
-            res.send("OK");
-        });
+    task.save(function (err){
+        if (err) console.log(err);
+        console.log('inserted new task\n' + task);
+        res.send(task);
     });
-}
+});
 
-function initDeleteTaskByIdEndpoint(db) {
-    app.delete('/tasks/:type/:id', function(req, res) {
-        db.collection('tasks', function(err, collection) {
-            assert.equal(err, null);
-            collection.remove({
-                '_id': new mongodb.ObjectID(req.params.id)
-            }, function(err, result) {
-                assert.equal(err, null);
-                res.send("OK");
-            });
-        });
+app.get("/quadrants/:num", function(req, res) {
+    Task.find({quadrant: parseInt(req.params.num)}, function (err, tasks) {
+        if (err) console.log(err);
+        res.send(tasks);
     });
-}
+});
 
-function initEndpoints() {
-    mongo.connectToServer(function(err) {
-        assert.equal(err, null);
-        var db = mongo.getDb();
-
-        initGetTasksByTypeEndpoint(db);
-        initAddNewTaskEndpoint(db);
-        initGetTasksByQuadrantEndpoint(db);
-        initDeleteTasksByTypeEndpoint(db);
-        initDeleteTaskByIdEndpoint(db);
+app.delete('/tasks/type/:type', function(req, res) {
+    console.log('delete tasks of type: ' + req.params.type);
+    Task.find({type: req.params.type}).remove(function (err) {
+        if (err) console.log(err);
+        res.status(204).send();
     });
-}
+});
 
-initEndpoints();
+app.delete('/tasks/:id', function(req, res) {
+    console.log('delete single: ' + req.params.id);
+    Task.findOne({_id: mongoose.Types.ObjectId(req.params.id)}, function (err, task) {
+        if (err) console.log(err);
+        if (task) {
+            console.log(task);
+            task.remove();
+            res.status(204).send();
+        } else
+            res.status(404).send('not found');
+    });
+});
+
+app.post("/requests", bodyParser.json(), function(req, res) {
+    console.log(req.body);
+    freeFormRequest(req.body.ask, function(result) {
+        if (res) {
+            res.send(result);
+        }
+    });
+});
+
 var server = app.listen(props.get("server:port"), function() {
     console.log("listening on port ".concat(props.get("server:port")));
 });
