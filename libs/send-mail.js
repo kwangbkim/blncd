@@ -1,9 +1,9 @@
 var props = require('./properties'),
-    get = require('./get-tasks'),
+    repository = require('./tasks-repository'),
     sendgrid = require('sendgrid')(props.get('SENDGRID'));
 
 function mail() {
-    get(function (body) {
+    repository.getAllTasks(function (err, body) {
         if (body) {
             sendgrid.send({
                 to: props.get('user:email'),
@@ -19,5 +19,3 @@ function mail() {
 }
 
 module.exports = mail;
-
-mail();

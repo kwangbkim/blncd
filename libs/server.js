@@ -7,41 +7,39 @@ var fs = require('fs'),
     http = require('http'),
     props = require('./properties'),
     freeFormRequest = require('./free-form'),
-    Task = require('./tasks');
+    Task = require('./tasks'),
+    repository = require('./tasks-repository');
 
 var app = express();
 mongoose.connect(props.get("mongo:url"));
 
 app.get("/tasks", function(req, res) {
-    Task.find({}).sort('quadrant').exec(function (err, tasks) {
+    console.log('get all tasks');
+    repository.getAllTasks(function (err, tasks) {
         if (err) console.log(err);
         res.send(tasks);
     });
 });
 
 app.get("/tasks/:type", function(req, res) {
-    Task.find({type: req.params.type}).sort('quadrant').exec(function (err, tasks) {
+    console.log('get tasks by type: ' + req.params.type);
+    repository.getTasksByType(req.params.type, function (err, tasks) {
         if (err) console.log(err);
         res.send(tasks);
     });
 });
 
 app.post("/tasks", bodyParser.json(), function(req, res) {
-    console.log(req.body.description);
-    var task = new Task({
-        description: req.body.description,
-        quadrant: parseInt(req.body.quadrant),
-        type: req.body.type,
-    });
-    task.save(function (err){
+    console.log('insert new task: ' + req.body);
+    repository.insert(req.body.type, req.body.description, req.body.quadrant, function (err){
         if (err) console.log(err);
-        console.log('inserted new task\n' + task);
-        res.send(task);
+        res.status(201).send();
     });
 });
 
 app.get("/quadrants/:num", function(req, res) {
-    Task.find({quadrant: parseInt(req.params.num)}, function (err, tasks) {
+    console.log('get tasks by quadrant: ' + req.params.num);
+    repository.getTasksByQuadrant(req.params.num, function (err, tasks) {
         if (err) console.log(err);
         res.send(tasks);
     });
@@ -49,7 +47,7 @@ app.get("/quadrants/:num", function(req, res) {
 
 app.delete('/tasks/type/:type', function(req, res) {
     console.log('delete tasks of type: ' + req.params.type);
-    Task.find({type: req.params.type}).remove(function (err) {
+    repository.deleteByType(req.params.type, function (err) {
         if (err) console.log(err);
         res.status(204).send();
     });
@@ -57,23 +55,18 @@ app.delete('/tasks/type/:type', function(req, res) {
 
 app.delete('/tasks/:id', function(req, res) {
     console.log('delete single: ' + req.params.id);
-    Task.findOne({_id: mongoose.Types.ObjectId(req.params.id)}, function (err, task) {
+    repository.deleteSingle(req.params.id, new function (err, isDeleted){
         if (err) console.log(err);
-        if (task) {
-            console.log(task);
-            task.remove();
-            res.status(204).send();
-        } else
-            res.status(404).send('not found');
+        if (isDeleted) res.status(204).send();
+        res.status(404).send();
     });
 });
 
 app.post("/requests", bodyParser.json(), function(req, res) {
     console.log(req.body);
-    freeFormRequest(req.body.ask, function(result) {
-        if (res) {
-            res.send(result);
-        }
+    freeFormRequest(req.body.ask, function(err, result) {
+        if (err) console.log(err);
+        res.send(result);
     });
 });
 

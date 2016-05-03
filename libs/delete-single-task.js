@@ -19,8 +19,7 @@ function deleteSingle(id, callback) {
     };
 
     request(options, function(err, res, body) {
-        assert.equal(err, null);
-        callback(res);
+        callback(err, res);
     });
 }
 

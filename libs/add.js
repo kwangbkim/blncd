@@ -21,10 +21,9 @@ function add(type, desc, quadrant, callback) {
         }
     };
 
+    console.log('calling');
     request(options, function(err, res, body) {
-        assert.equal(err, null);
-        console.log(body);
-        callback(res);
+        callback(err, res);
     });
 }
 
