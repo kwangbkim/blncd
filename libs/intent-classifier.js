@@ -1,25 +1,25 @@
-var fuse = require('./fuse');
+var fuse = require('./fuse')
 
-var deletes = ['done', 'finish', 'complete', 'delete'];
-var adds = ['add', 'new'];
+var lists = {
+    add: ['add', 'new'],
+    get: ['get'],
+    mail: ['send', 'mail', 'email'],
+    'delete single': ['done', 'complete', 'delete'],
+    'delete type': ['finish', 'finished'],
+}
 
-module.exports = function (sentence) {
-    var split = sentence.split(" ");
-    var first = split[0];
-    var second = split[1];
+var commands = [
+    'add', 'get', 'what', 'retrieve', 'send', 'mail', 'email',
+    'done', 'complete', 'delete', 'finish', 'finished', 'find', 'new'
+]
 
-    var f = new fuse(deletes);
-    var result = f.search(first);
-    if (first != 'new' && first.length > 2) {
-        if (result.length >= 1 && second == 'all')
-            return "delete all";
-        else if (result.length >= 1)
-            return "delete";
+module.exports = function (word) {
+    var f = new fuse(commands);
+    var matches = f.search(word);
+
+    for (var k in lists) {
+        if (lists[k].indexOf(commands[matches[0]]) > -1)
+            return k;
     }
-
-    f = new fuse(adds);
-    result = f.search(first);
-    if (result.length >= 1)
-        return "add";
     return null;
 }

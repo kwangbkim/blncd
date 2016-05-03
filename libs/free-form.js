@@ -7,7 +7,7 @@ module.exports = function (sentence, callback) {
     var description = sentence.substring(sentence.indexOf(' '));
     var intent = classify(sentence);
 
-    if (intent == 'delete') {
+    if (intent == 'delete single') {
         console.log("starting fuzzy");
         fuzzy.search(description, function (tasks) {
             if (tasks[0]) {
