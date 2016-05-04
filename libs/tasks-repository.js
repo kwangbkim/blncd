@@ -1,4 +1,5 @@
-var Task = require('./tasks');
+var Task = require('./tasks'),
+    mongoose = require('mongoose');
 
 module.exports = {
     deleteByType: function (type, callback) {
@@ -6,8 +7,12 @@ module.exports = {
     },
 
     deleteSingle: function (id, callback) {
-        Task.findOne({_id: mongoose.Types.ObjectId(req.params.id)}, function (err, task) {
-            var isDeleted = task == null;
+        Task.findOne({_id: mongoose.Types.ObjectId(id)}, function (err, task) {
+            var isDeleted = false;
+            if (task) {
+                task.remove();
+                isDeleted = true;
+            }
             callback(err, isDeleted);
         });
     },

@@ -17,7 +17,7 @@ var options = {
     method: 'POST',
     json: true,
     body: {
-        ask: process.argv[2]
+        ask: process.argv[2].replace(/['"]+/g, '')
     }
 };
 

@@ -23,7 +23,7 @@ module.exports = function (sentence, callback) {
         var a = description.split(" ");
         var quadrant = a[a.length - 1];
         console.log(a);
-        repository.insert(a[1].trim(), description, quadrant, callback);
+        repository.insert(a[1].trim(), description.trim(), quadrant, callback);
     } else if (intent == 'get') {
         console.log('running get');
         repository.getAllTasks(callback);
