@@ -1,7 +1,7 @@
 var request = require('request'),
   assert = require('assert'),
   props = require('./properties'),
-  sf = format = require('./string-format');
+  sf = require('./string-format');
 
 sf.init();
 

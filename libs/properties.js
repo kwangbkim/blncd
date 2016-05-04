@@ -10,4 +10,4 @@ module.exports = {
   get: function (name) {
     return nconf.get(name);
   }
-}
+};

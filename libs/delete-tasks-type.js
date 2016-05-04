@@ -21,4 +21,4 @@ module.exports = function () {
     assert.equal(err, null);
     console.log(body);
   });
-}
+};

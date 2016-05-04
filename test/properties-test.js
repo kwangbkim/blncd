@@ -7,6 +7,6 @@ describe('properties', function () {
       var url = props.get("mongo:url");
       assert.notEqual(null, url);
       done();
-    })
+    });
   });
 });

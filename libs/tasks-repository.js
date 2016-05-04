@@ -45,4 +45,4 @@ module.exports = {
     });
     task.save(callback);
   }
-}
+};

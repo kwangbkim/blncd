@@ -33,4 +33,4 @@ module.exports = function (sentence, callback) {
   } else {
     callback('no task found for intent: ' + intent, null);
   }
-}
+};

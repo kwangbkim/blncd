@@ -1,4 +1,4 @@
-var fuse = require('./fuse')
+var fuse = require('./fuse');
 
 var lists = {
   'add': ['add', 'new'],
@@ -6,12 +6,12 @@ var lists = {
   'mail': ['send', 'mail', 'email'],
   'delete single': ['done', 'complete', 'delete'],
   'delete type': ['finish', 'finished'],
-}
+};
 
 var commands = [
   'add', 'get', 'what', 'retrieve', 'send', 'mail', 'email',
   'done', 'complete', 'delete', 'finish', 'finished', 'find', 'new'
-]
+];
 
 module.exports = function (word) {
   var f = new fuse(commands);
@@ -29,4 +29,4 @@ module.exports = function (word) {
     }
   }
   return null;
-}
+};

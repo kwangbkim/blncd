@@ -1,4 +1,3 @@
-"use strict";
 var fs = require('fs'),
   express = require('express'),
   mongoose = require('mongoose'),
@@ -55,7 +54,7 @@ app.delete('/tasks/type/:type', function (req, res) {
 
 app.delete('/tasks/:id', function (req, res) {
   console.log('delete single: ' + req.params.id);
-  repository.deleteSingle(req.params.id, new function (err, isDeleted) {
+  repository.deleteSingle(req.params.id, function (err, isDeleted) {
     if (err) console.log(err);
     if (isDeleted) res.status(204).send();
     res.status(404).send();
