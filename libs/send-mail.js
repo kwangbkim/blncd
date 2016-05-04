@@ -2,17 +2,16 @@ var props = require('./properties'),
   repository = require('./tasks-repository'),
   sendgrid = require('sendgrid')(props.get('SENDGRID'));
 
-function mail() {
-  repository.getAllTasks(function (err, body) {
-    if (body) {
+function mail(callback) {
+  repository.getAllTasks(function (err, tasks) {
+    if (tasks) {
       sendgrid.send({
         to: props.get('user:email'),
-        from: props.get('user:email'),
-        subject: "Urgent",
-        text: body
+        from: props.get('BALANCED_SERVER_EMAIL'),
+        subject: "Balanced",
+        text: JSON.stringify(tasks, null, 2)
       }, function (err, json) {
-        if (err) return console.error(err);
-        console.log(json);
+        callback(err, json);
       });
     }
   });
