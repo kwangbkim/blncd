@@ -17,10 +17,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-;(function (global) {
+;
+(function (global) {
   'use strict'
 
-  function log () {
+  function log() {
     console.log.apply(console, arguments)
   }
 
@@ -78,7 +79,7 @@
     tokenize: false
   }
 
-  function Fuse (list, options) {
+  function Fuse(list, options) {
     var i
     var len
     var key
@@ -168,12 +169,12 @@
       }
     } else {
       this._keyMap = {}
-      // Otherwise, the first item is an Object (hopefully), and thus the searching
-      // is done on the values of the keys of each item.
-      // Iterate over every item
+        // Otherwise, the first item is an Object (hopefully), and thus the searching
+        // is done on the values of the keys of each item.
+        // Iterate over every item
       for (i = 0; i < listLen; i++) {
         item = list[i]
-        // Iterate over every key
+          // Iterate over every key
         for (j = 0; j < keysLen; j++) {
           key = keys[j]
           if (typeof key !== 'string') {
@@ -433,7 +434,7 @@
 
   // Helpers
 
-  function deepValue (obj, path, list) {
+  function deepValue(obj, path, list) {
     var firstSegment
     var remaining
     var dotIndex
@@ -473,7 +474,7 @@
     return list
   }
 
-  function isArray (obj) {
+  function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]'
   }
 
@@ -493,7 +494,7 @@
    * Licensed under the Apache License, Version 2.0 (the "License")
    * you may not use this file except in compliance with the License.
    */
-  function BitapSearcher (pattern, options) {
+  function BitapSearcher(pattern, options) {
     options = options || {}
     this.options = options
     this.options.location = options.location || BitapSearcher.defaultOptions.location
@@ -606,7 +607,9 @@
       return {
         isMatch: true,
         score: 0,
-        matchedIndices: [[0, text.length - 1]]
+        matchedIndices: [
+          [0, text.length - 1]
+        ]
       }
     }
 
@@ -632,11 +635,11 @@
     }
 
     location = options.location
-    // Set starting location at beginning text and initialize the alphabet.
+      // Set starting location at beginning text and initialize the alphabet.
     textLen = text.length
-    // Highest score beyond which we give up.
+      // Highest score beyond which we give up.
     threshold = options.threshold
-    // Is there a nearby exact match? (speedup)
+      // Is there a nearby exact match? (speedup)
     bestLoc = text.indexOf(this.pattern, location)
 
     // a mask of the matches
@@ -647,7 +650,7 @@
 
     if (bestLoc != -1) {
       threshold = Math.min(this._bitapScore(0, bestLoc), threshold)
-      // What about in the other direction? (speed up)
+        // What about in the other direction? (speed up)
       bestLoc = text.lastIndexOf(this.pattern, location + this.patternLen)
 
       if (bestLoc != -1) {

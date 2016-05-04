@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    props  = require('../libs/properties');
+  props = require('../libs/properties');
 
 describe('properties', function () {
   describe('#get()', function () {
