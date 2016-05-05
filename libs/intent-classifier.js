@@ -9,8 +9,8 @@ var lists = {
 };
 
 var commands = [
-  'add', 'get', 'what', 'retrieve', 'send', 'mail', 'email',
-  'done', 'complete', 'delete', 'finish', 'finished', 'find', 'new'
+  'add', 'new', 'get', 'send', 'mail', 'email',
+  'done', 'complete', 'delete', 'finish', 'finished', 'find',
 ];
 
 module.exports = function (word) {

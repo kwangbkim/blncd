@@ -18,6 +18,9 @@ module.exports = function (sentence, callback) {
         console.log("no match");
       }
     });
+  } else if (intent == 'delete type') {
+    console.log('delete by type');
+    repository.deleteByType(description, callback);
   } else if (intent == 'add') {
     console.log('running add');
     var a = description.split(" ");
