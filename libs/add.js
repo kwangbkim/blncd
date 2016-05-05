@@ -21,7 +21,6 @@ function add(type, desc, quadrant, callback) {
     }
   };
 
-  console.log('calling');
   request(options, function (err, res, body) {
     callback(err, res);
   });

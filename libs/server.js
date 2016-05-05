@@ -10,7 +10,7 @@ var fs = require('fs'),
   repository = require('./tasks-repository');
 
 var app = express();
-mongoose.connect(props.get("mongo:url"));
+mongoose.connect(props.get("mongo:url").replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD')));
 
 app.get("/tasks", function (req, res) {
   console.log('get all tasks');

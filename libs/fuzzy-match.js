@@ -8,7 +8,6 @@ function search(input, callback) {
   };
 
   Task.find({}, function (err, tasks) {
-    console.log('aggregated tasks');
     var f = new fuse(tasks, options);
     var result = f.search(input);
     callback(result);
