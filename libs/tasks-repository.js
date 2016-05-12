@@ -2,16 +2,16 @@ var Task = require('./tasks'),
   mongoose = require('mongoose');
 
 module.exports = {
-  deleteByType: function (type, callback) {
+  deleteByType: function(type, callback) {
     Task.find({
       type: type
     }).remove(callback);
   },
 
-  deleteSingle: function (id, callback) {
+  deleteSingle: function(id, callback) {
     Task.findOne({
       _id: mongoose.Types.ObjectId(id)
-    }, function (err, task) {
+    }, function(err, task) {
       var isDeleted = false;
       if (task) {
         task.remove();
@@ -21,26 +21,26 @@ module.exports = {
     });
   },
 
-  getAllTasks: function (callback) {
+  getAllTasks: function(callback) {
     Task.find({}).sort('quadrant').exec(callback);
   },
 
-  getTasksByQuadrant: function (quadrant, callback) {
+  getTasksByQuadrant: function(quadrant, callback) {
     Task.find({
       quadrant: parseInt(quadrant)
     }, callback);
   },
-
-  getTasksByType: function (type, callback) {
+  1
+  getTasksByType: function(type, callback) {
     Task.find({
       type: type
     }).sort('quadrant').exec(callback);
   },
 
-  insert: function (type, description, quadrant, callback) {
+  insert: function(type, description, quadrant, callback) {
     var q = !isNaN(quadrant) ? parseInt(quadrant) : 4;
     console.log(q);
-    
+
     var task = new Task({
       description: description,
       quadrant: q,
