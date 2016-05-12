@@ -4,7 +4,7 @@ var Task = require('./tasks'),
 module.exports = {
   deleteByType: function (type, callback) {
     Task.find({
-      type: req.params.type
+      type: type
     }).remove(callback);
   },
 
