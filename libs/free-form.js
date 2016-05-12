@@ -28,9 +28,10 @@ module.exports = function (sentence, callback) {
     console.log(a);
     repository.insert(a[1].trim(), description.trim(), quadrant, callback);
   } else if (intent == 'get') {
-      if (description) {
+      var type = description.split(' ')[1];
+      if (type) {
         console.log('running get tasks by type');
-        fuzzy.search(description.split(' ')[1], 'type', function (tasks) {
+        fuzzy.search(type, 'type', function (tasks) {
         if (tasks[0]) {
           var bestMatch = tasks[0];
           console.log('best match found: ' + bestMatch.type);
