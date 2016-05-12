@@ -37,7 +37,7 @@ module.exports = function (sentence, callback) {
           console.log('best match found: ' + bestMatch.type);
           repository.getTasksByType(bestMatch.type, callback);
         } else {
-          console.log("no match found for type: " + description);
+          callback("no match found for type: " + description, null);
         }
       });
     } else {

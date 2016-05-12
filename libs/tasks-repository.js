@@ -38,8 +38,7 @@ module.exports = {
   },
 
   insert: function (type, description, quadrant, callback) {
-    var isInt = Number(quadrant) === quadrant && quadrant % 1 === 0;
-    var q = isInt ? parseInt(quadrant) : 4;
+    var q = !isNaN(quadrant) ? parseInt(quadrant) : 4;
     console.log(q);
     
     var task = new Task({
