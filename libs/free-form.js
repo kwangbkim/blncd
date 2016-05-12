@@ -9,7 +9,7 @@ module.exports = function (sentence, callback) {
 
   if (intent == 'delete single') {
     console.log("running delete single");
-    fuzzy.search(description, function (tasks) {
+    fuzzy.search(description, 'description', function (tasks) {
       if (tasks[0]) {
         var bestMatch = tasks[0];
         console.log('attemping to delete: ' + bestMatch);
@@ -28,8 +28,21 @@ module.exports = function (sentence, callback) {
     console.log(a);
     repository.insert(a[1].trim(), description.trim(), quadrant, callback);
   } else if (intent == 'get') {
-    console.log('running get');
-    repository.getAllTasks(callback);
+      if (description) {
+        console.log('running get tasks by type');
+        fuzzy.search(description.split(' ')[1], 'type', function (tasks) {
+        if (tasks[0]) {
+          var bestMatch = tasks[0];
+          console.log('best match found: ' + bestMatch.type);
+          repository.getTasksByType(bestMatch.type, callback);
+        } else {
+          console.log("no match found for type: " + description);
+        }
+      });
+    } else {
+      console.log('running get all tasks');
+      repository.getAllTasks(callback);
+    }
   } else if (intent == 'mail') {
     console.log('running mail');
     sendMail(callback);

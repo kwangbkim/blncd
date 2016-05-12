@@ -2,9 +2,9 @@ var fuse = require('./fuse'),
   Task = require('./tasks'),
   assert = require('assert');
 
-function search(input, callback) {
+function search(input, field, callback) {
   var options = {
-    keys: ['description']
+    keys: [field]
   };
 
   Task.find({}, function (err, tasks) {
