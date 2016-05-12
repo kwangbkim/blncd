@@ -38,9 +38,13 @@ module.exports = {
   },
 
   insert: function (type, description, quadrant, callback) {
+    var isInt = Number(quadrant) === quadrant && quadrant % 1 === 0;
+    var q = isInt ? parseInt(quadrant) : 4;
+    console.log(q);
+    
     var task = new Task({
       description: description,
-      quadrant: parseInt(quadrant),
+      quadrant: q,
       type: type
     });
     task.save(callback);
