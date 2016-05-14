@@ -30,7 +30,7 @@ module.exports = {
       quadrant: parseInt(quadrant)
     }, callback);
   },
-  1
+  
   getTasksByType: function(type, callback) {
     Task.find({
       type: type
