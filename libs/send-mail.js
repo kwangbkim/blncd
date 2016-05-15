@@ -1,5 +1,6 @@
 var props = require('./properties'),
   repository = require('./tasks-repository'),
+  jsrender = require('jsrender') ,
   sendgrid = require('sendgrid')(props.get('SENDGRID'));
 
 function mail(description, callback) {
@@ -9,7 +10,7 @@ function mail(description, callback) {
         to: props.get('user:email'),
         from: props.get('BALANCED_SERVER_EMAIL'),
         subject: "Balanced",
-        text: JSON.stringify(tasks, null, 2)
+        html: jsrender.renderFile('./html/email-template.html', tasks)
       }, function(err, json) {
         callback(err, json);
       });

@@ -18,6 +18,10 @@ app.get("/tasks", function (req, res) {
   console.log('get all tasks');
   repository.getAllTasks(function (err, tasks) {
     if (err) console.log(err);
+    tasks.forEach(function(a){
+      delete a._id;
+      delete a.__v;
+    });
     res.send(tasks);
   });
 });
