@@ -19,5 +19,8 @@
     "nconf": "^0.8.4",
     "request": "^2.71.0",
     "sendgrid": "^2.0.0"
+  },
+  "devDependencies": {
+    "proxyquire": "^1.7.9"
   }
 }
