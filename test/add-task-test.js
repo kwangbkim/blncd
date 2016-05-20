@@ -1,14 +1,12 @@
 var assert = require('assert'),
-	proxyquire = require('proxyquire'),
-	repositoryStub = {};
+	proxyquire = require('proxyquire');
 
 var stubs = {
-  './tasks-repository': {
-    'insert': function(type, description, quadrant, callback) {
-      callback(type, description, quadrant);
-    },
-    '@global': true
-  }
+	'./tasks-repository': {
+		'insert': function(type, description, quadrant, callback) {
+			callback(type, description, quadrant);
+		}
+	}
 };
 
 var add = proxyquire('../libs/add-task', stubs);

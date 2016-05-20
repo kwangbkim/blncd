@@ -21,5 +21,5 @@ module.exports = function(sentence, callback) {
   if (command)
     command(description, callback);
   else
-    callback('no task found for intent: ' + intent, null);
+    callback('cant classify intent for: ' + sentence.split(" ")[0], null);
 };
