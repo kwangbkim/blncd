@@ -1,12 +1,8 @@
-var fs = require('fs'),
-  express = require('express'),
+var express = require('express'),
   mongoose = require('mongoose'),
-  assert = require('assert'),
   bodyParser = require('body-parser'),
-  http = require('http'),
   props = require('./properties'),
   freeFormRequest = require('./free-form'),
-  Task = require('./tasks'),
   repository = require('./tasks-repository');
 
 var app = express();
