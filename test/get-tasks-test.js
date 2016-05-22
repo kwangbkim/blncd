@@ -14,7 +14,7 @@ var stubs = {
 		'search': function(type, field, callback) {
 			var task = {
 				type: type
-			}
+			};
 			callback([task]);
 		}
 	}
