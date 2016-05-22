@@ -28,45 +28,35 @@ describe('free-form', function() {
 			done();
 		});
 	});
-});
 
-describe('free-form', function() {
 	it('deletes single task', function(done) {
 		ff("delete some task", function(result) {
 			assert.equal("deleted single task", result);
 			done();
 		});
 	});
-});
 
-describe('free-form', function() {
 	it('deletes by task type', function(done) {
 		ff("finished task-type", function(result) {
 			assert.equal("deleted tasks by type", result);
 			done();
 		});
 	});
-});
 
-describe('free-form', function() {
 	it('adds a new task', function(done) {
 		ff("add type some new task", function(result) {
 			assert.equal("added task", result);
 			done();
 		});
 	});
-});
 
-describe('free-form', function() {
 	it('gets tasks', function(done) {
 		ff("get", function(result) {
 			assert.equal("get tasks", result);
 			done();
 		});
 	});
-});
 
-describe('free-form', function() {
 	it('returns error when no intent found', function(done) {
 		ff("asdf043295hf", function(err, result) {
 			assert.equal("cant classify intent for: asdf043295hf", err);

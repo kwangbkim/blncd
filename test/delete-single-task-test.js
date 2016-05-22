@@ -16,7 +16,7 @@ var stubs = {
 
 var deleteTask = proxyquire('../libs/delete-single-task', stubs);
 
-describe('delete-task', function() {
+describe('delete-single-task', function() {
 	it('should delete when task found', function(done) {
 		var task = {
 			_id: 'id'
@@ -26,9 +26,7 @@ describe('delete-task', function() {
 			done();
 		});
 	});
-});
 
-describe('delete-task', function() {
 	it('should return message when no task found', function(done) {
 		deleteTask(null, function(err, res) {
 			assert.equal('no match found', err);

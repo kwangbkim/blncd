@@ -17,14 +17,8 @@ module.exports = function (word) {
   var f = new fuse(commands);
   var matches = f.search(word);
 
-  console.log('matched commands');
-  for (var i in matches) {
-    console.log(commands[matches[i]]);
-  }
-
   for (var k in lists) {
     if (lists[k].indexOf(commands[matches[0]]) > -1) {
-      console.log('best intent match: ' + k);
       return k;
     }
   }

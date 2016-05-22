@@ -16,7 +16,7 @@ var stubs = {
 
 var deleteTask = proxyquire('../libs/delete-tasks-type', stubs);
 
-describe('delete-task', function() {
+describe('delete-task-type', function() {
 	it('should delete when type found', function(done) {
 		var task = {
 			type: 'type'
@@ -26,9 +26,7 @@ describe('delete-task', function() {
 			done();
 		});
 	});
-});
 
-describe('delete-task', function() {
 	it('should return message when no type found', function(done) {
 		deleteTask(null, function(err, res) {
 			assert.equal('no match found for type: null', err);

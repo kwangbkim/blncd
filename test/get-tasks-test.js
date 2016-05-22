@@ -29,25 +29,19 @@ describe('get-tasks', function() {
 			done();
 		});
 	});
-});
 
-describe('get-tasks', function() {
 	it('get tasks of a specific type using fuzzy match', function(done) {
 		get("get test", function(res) {
 			assert.equal('test', res);
 			done();
 		});
 	});
-});
 
-describe('get-tasks', function() {
-	before(function() {
+	it('return error when no task found matching a type', function(done) {
 		stubs['./fuzzy-match'].search = function(type, field, callback) {
 			callback([]);
 		};
-	});
 
-	it('return error when no task found matching a type', function(done) {
 		get("get test", function(err, res) {
 			assert.equal("no match found for type: get test", err);
 			assert.equal(null, res);
