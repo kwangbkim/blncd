@@ -6,7 +6,7 @@ module.exports = function(description, callback) {
   if (type) {
     console.log('running get tasks by type');
     fuzzy.search(type, 'type', function(tasks) {
-      if (tasks[0]) {
+      if (tasks.length > 0) {
         var bestMatch = tasks[0];
         console.log('best match found: ' + bestMatch.type);
         repository.getTasksByType(bestMatch.type, callback);
