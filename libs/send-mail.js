@@ -10,7 +10,7 @@ function mail(description, callback) {
         to: props.get('user:email'),
         from: props.get('BALANCED_SERVER_EMAIL'),
         subject: "Balanced",
-        html: jsrender.renderFile('./html/email-template.html', tasks)
+        html: jsrender.renderFile('./templates/email-template.html', tasks)
       }, function(err, json) {
         callback(err, json);
       });

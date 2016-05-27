@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    title todo for devs
+    meta(charset="utf-8")
+    script(src="/js/jquery-2.2.4.js")
+    script(type="text/javascript").
+      $(function() {
+        $("#commandForm").submit(function(evt) {
+          $.ajax({
+            type: "POST",
+            url: "/requests",
+            data: JSON.stringify({ ask: $("#commandText").val() }),
+            success: function(data) { alert('hi'); },
+            dataType: "json",
+            contentType: "application/json"
+          });
+        });
+      });
+  section
+    h1 Balanced
+    a(href="/tasks") Tasks
+  body
+    div(id="error")
+    section
+      form(id="commandForm")
+        input(id="commandText" type="text" required)
+        input(type="submit")
+    section
+      h2 Important and Urgent
+      each task in tasks1
+        article
+          a(href="/tasks")
+            img(src="//checkbox.png")
+          div.name
+            span.name=task.description
+    section
+      h2 Important and Not Urgent
+      each task in tasks2
+        article
+          a(href="/tasks")
+            img(src="//checkbox.png")
+          div.name
+            span.name=task.description
+    section
+      h2 Not Important and Urgent
+      each task in tasks3
+        article
+          a(href="/tasks")
+            img(src="//checkbox.png")
+          div.name
+            span.name=task.description
+    section
+      h2 Not Important and Not Urgent
+      each task in tasks4
+        article
+          a(href="/tasks")
+            img(src="//checkbox.png")
+          div.name
+            span.name=task.description
