@@ -10,8 +10,7 @@ html(lang="en")
           $.ajax({
             type: "POST",
             url: "/requests",
-            data: JSON.stringify({ ask: $("#commandText").val() }),
-            success: function(data) { alert('hi'); },
+            data: JSON.stringify({ ask: "add " + $("#commandText").val() }),
             dataType: "json",
             contentType: "application/json"
           });
