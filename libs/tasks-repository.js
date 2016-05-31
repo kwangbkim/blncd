@@ -15,9 +15,8 @@ module.exports = {
       var isDeleted = false;
       if (task) {
         task.remove();
-        isDeleted = true;
       }
-      callback(err, isDeleted);
+      callback(err, task);
     });
   },
 

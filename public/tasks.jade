@@ -28,32 +28,34 @@ html(lang="en")
     section
       h2 Important and Urgent
       each task in tasks1
-        article
-          a(href="/tasks")
-            img(src="//checkbox.png")
+        form(action='/tasks/#{task._id}', method='post')
           div.name
             span.name=task.description
+          div.delete
+            input.btn.btn-danger.pull-right(type='submit', value='Delete')
     section
       h2 Important and Not Urgent
       each task in tasks2
-        article
-          a(href="/tasks")
-            img(src="//checkbox.png")
+        form(action='/tasks/#{task._id}', method='post')
           div.name
             span.name=task.description
+          div.delete
+            input.btn.btn-danger.pull-right(type='submit', value='Delete')
     section
       h2 Not Important and Urgent
       each task in tasks3
-        article
-          a(href="/tasks")
-            img(src="//checkbox.png")
+        form(action='/tasks/#{task._id}', method='post')
           div.name
             span.name=task.description
+          div.delete
+            input.btn.btn-danger.pull-right(type='submit', value='Delete')
     section
       h2 Not Important and Not Urgent
       each task in tasks4
-        article
-          a(href="/tasks")
-            img(src="//checkbox.png")
+        form(action='/tasks/#{task._id}', method='post')
           div.name
             span.name=task.description
+          div.delete
+            input.btn.btn-danger.pull-right(type='submit', value='Delete')
+
+

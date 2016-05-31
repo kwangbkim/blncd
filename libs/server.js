@@ -71,16 +71,16 @@ app.delete('/tasks/type/:type', function(req, res) {
   console.log('delete tasks of type: ' + req.params.type);
   repository.deleteByType(req.params.type, function(err) {
     if (err) console.log(err);
-    res.status(204).send();
+    res.redirect('/tasks');
   });
 });
 
-app.delete('/tasks/:id', function(req, res) {
+app.post('/tasks/:id', function(req, res) {
   console.log('delete single: ' + req.params.id);
-  repository.deleteSingle(req.params.id, function(err, isDeleted) {
+  repository.deleteSingle(req.params.id, function(err, task) {
     if (err) console.log(err);
-    if (isDeleted) res.status(204).send();
-    res.status(404).send();
+    console.log('deleted task ', task._id)
+    res.redirect('/tasks');
   });
 });
 
