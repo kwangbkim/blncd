@@ -1,8 +1,10 @@
-doctype html
 html(lang="en")
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+  link(rel="stylesheet" type="text/css" href="css/custom.css")
   head
     title todo for devs
     meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
     script(src="/js/jquery-2.2.4.js")
     script(type="text/javascript").
       $(function() {
@@ -17,45 +19,47 @@ html(lang="en")
         });
       });
   section
-    h1 Balanced
-    a(href="/tasks") Tasks
+    div.container
+      nav.navbar.navbar-default
+        div.container-fluid
+          a.navbar-brand(href="#") Balanced
   body
-    div(id="error")
-    section
-      form(id="commandForm")
-        input(id="commandText" type="text" required)
-        input(type="submit")
-    section
-      h2 Important and Urgent
-      each task in tasks1
-        form(action='/tasks/#{task._id}', method='post')
-          div.name
-            span.name=task.description
-          div.delete
-            input.btn.btn-danger.pull-right(type='submit', value='Delete')
-    section
-      h2 Important and Not Urgent
-      each task in tasks2
-        form(action='/tasks/#{task._id}', method='post')
-          div.name
-            span.name=task.description
-          div.delete
-            input.btn.btn-danger.pull-right(type='submit', value='Delete')
-    section
-      h2 Not Important and Urgent
-      each task in tasks3
-        form(action='/tasks/#{task._id}', method='post')
-          div.name
-            span.name=task.description
-          div.delete
-            input.btn.btn-danger.pull-right(type='submit', value='Delete')
-    section
-      h2 Not Important and Not Urgent
-      each task in tasks4
-        form(action='/tasks/#{task._id}', method='post')
-          div.name
-            span.name=task.description
-          div.delete
-            input.btn.btn-danger.pull-right(type='submit', value='Delete')
-
-
+    div.container
+      div.row
+        div.col-md-10.col-md-offset-2
+          form.form-horizontal(id="commandForm")
+            div.form-group.has-feedback
+              div.col-sm-9
+                input.form-control(id="commandText" type="text" required)
+                span.glyphicon.glyphicon-plus.form-control-feedback
+    div.container
+      div.row
+        div.col-sm-6.first-quadrant
+          h4.task-header Important and Urgent
+          each task in tasks1
+            form.form-group(action='/tasks/#{task._id}', method='post')
+              button.btn.btn-sm.btn-success.pull-right(type='submit')
+                i.glyphicon.glyphicon-ok
+              span.name=task.description
+        div.col-sm-6.second-quadrant
+          h4.task-header Important and Not Urgent
+          each task in tasks2
+            form.form-group(action='/tasks/#{task._id}', method='post')
+              span.name=task.description
+              button.btn.btn-sm.btn-success.pull-right(type='submit')
+                i.glyphicon.glyphicon-ok
+      div.row
+        div.col-sm-6.third-quadrant
+          h4.task-header Not Important and Urgent
+          each task in tasks3
+            form.form-group(action='/tasks/#{task._id}', method='post')
+              span.name=task.description
+              button.btn.btn-sm.btn-success.pull-right(type='submit')
+                i.glyphicon.glyphicon-ok
+        div.col-sm-6.fourth-quadrant
+          h4.task-header Not Important and Not Urgent
+          each task in tasks4
+            form.form-group(action='/tasks/#{task._id}', method='post')
+              span.name=task.description
+              button.btn.btn-sm.btn-success.pull-right(type='submit')
+                i.glyphicon.glyphicon-ok

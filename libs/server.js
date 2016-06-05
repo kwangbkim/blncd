@@ -20,6 +20,7 @@ app.get('/', function(req, res) {
 });
 
 app.get("/tasks", function(req, res) {
+  console.log('retrieving tasks');
   var f = function(task, quadrant) {
     return task.quadrant == quadrant;
   };
