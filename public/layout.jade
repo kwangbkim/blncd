@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
+  link(rel="stylesheet" type="text/css" href="css/custom.css")
+  head
+    title todo for devs
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    block scripts
+      script(src="/js/jquery-2.2.4.js")
+  section
+      div.container
+        nav.navbar.navbar-default
+          div.container-fluid
+            a.navbar-brand(href="/") Balanced
+            a(href='/tasks') Tasks
+  body
+    block content

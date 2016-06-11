@@ -1,60 +1,52 @@
-html(lang="en")
-  link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
-  link(rel="stylesheet" type="text/css" href="css/custom.css")
-  head
-    title todo for devs
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    script(src="/js/jquery-2.2.4.js")
-    script(type="text/javascript").
-      $(function() {
-        $("#commandForm").submit(function(evt) {
-          $.ajax({
-            type: "POST",
-            url: "/requests",
-            data: JSON.stringify({ ask: "add " + $("#commandText").val() }),
-            dataType: "json",
-            contentType: "application/json"
-          });
+extends ./layout.jade
+
+block scripts
+  script(src="/js/jquery-2.2.4.js")
+  script(type="text/javascript").
+    $(function() {
+      $("#commandForm").submit(function(evt) {
+        $.ajax({
+          type: "POST",
+          url: "/requests",
+          data: JSON.stringify({ ask: "add " + $("#commandText").val() }),
+          dataType: "json",
+          contentType: "application/json"
         });
       });
-  section
-    div.container
-      nav.navbar.navbar-default
-        div.container-fluid
-          a.navbar-brand(href="#") Balanced
-  body
-    section.input-section
-      form.form-horizontal(id="commandForm")
-        div.form-group.has-feedback
-          input.form-control(id="commandText" type="text" required)
-          span.glyphicon.glyphicon-plus.form-control-feedback
-    div.container.task-container
-      div.task-section
-        h4.task-header Important Urgent
-        each task in tasks1
-          form.form-group(action='/tasks/#{task._id}', method='post')
-            button.btn.btn-sm.btn-success.pull-right(type='submit')
-              i.glyphicon.glyphicon-ok
-            span.name=task.description
-      div.task-section
-        h4.task-header Important Not Urgent
-        each task in tasks2
-          form.form-group(action='/tasks/#{task._id}', method='post')
-            span.name=task.description
-            button.btn.btn-sm.btn-success.pull-right(type='submit')
-              i.glyphicon.glyphicon-ok
-      div.task-section
-        h4.task-header Not Important Urgent
-        each task in tasks3
-          form.form-group(action='/tasks/#{task._id}', method='post')
-            span.name=task.description
-            button.btn.btn-sm.btn-success.pull-right(type='submit')
-              i.glyphicon.glyphicon-ok
-      div.task-section
-        h4.task-header Not Important Not Urgent
-        each task in tasks4
-          form.form-group(action='/tasks/#{task._id}', method='post')
-            span.name=task.description
-            button.btn.btn-sm.btn-success.pull-right(type='submit')
-              i.glyphicon.glyphicon-ok
+    });
+
+block content
+  section.input-section
+    form.form-horizontal(id="commandForm")
+      div.form-group.has-feedback
+        input.form-control(id="commandText" type="text" required)
+        span.glyphicon.glyphicon-plus.form-control-feedback
+  div.container.task-container
+    div.task-section
+      h4.task-header Important Urgent
+      each task in tasks1
+        form.form-group(action='/tasks/#{task._id}', method='post')
+          button.btn.btn-sm.btn-success.pull-right(type='submit')
+            i.glyphicon.glyphicon-ok
+          span.name=task.description
+    div.task-section
+      h4.task-header Important Not Urgent
+      each task in tasks2
+        form.form-group(action='/tasks/#{task._id}', method='post')
+          span.name=task.description
+          button.btn.btn-sm.btn-success.pull-right(type='submit')
+            i.glyphicon.glyphicon-ok
+    div.task-section
+      h4.task-header Not Important Urgent
+      each task in tasks3
+        form.form-group(action='/tasks/#{task._id}', method='post')
+          span.name=task.description
+          button.btn.btn-sm.btn-success.pull-right(type='submit')
+            i.glyphicon.glyphicon-ok
+    div.task-section
+      h4.task-header Not Important Not Urgent
+      each task in tasks4
+        form.form-group(action='/tasks/#{task._id}', method='post')
+          span.name=task.description
+          button.btn.btn-sm.btn-success.pull-right(type='submit')
+            i.glyphicon.glyphicon-ok
