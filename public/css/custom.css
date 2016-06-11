@@ -2,4 +2,27 @@
 	border-bottom-style: solid;
 	border-color: lightgray;
 	border-width: 1px;
+	color: #585858;
+}
+
+.centered-container {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.input-section {
+	width: 370px;
+	margin: 0 auto;	
+}
+
+.task-section {
+	margin-top: 45px;
+	margin-bottom: 45px;
+}
+
+.task-container {
+	width: 400px;
+	margin: 0 auto;
+	border: solid 1px lightgray;
+	border-radius: 15px;
 }
