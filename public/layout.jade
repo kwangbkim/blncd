@@ -8,11 +8,30 @@ html(lang="en")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     block scripts
       script(src="/js/jquery-2.2.4.js")
+      script(src="https://cdn.auth0.com/js/lock-passwordless-1.0.min.js")
+      script(type="text/javascript").
+        $(function() {
+          $("#signinButton").click(function (evt) {
+            var lock = new Auth0LockPasswordless('PaZFWJ2xTl1HKugoxMtUVzvUmoFU10JF', 'balanced.auth0.com');
+            lock.emailcode( function (err, profile, id_token, state) {
+              if (!err) {
+                localStorage.setItem('userToken', id_token);
+              }
+            });
+          });
+        });
   section
       div.container
         nav.navbar.navbar-default
           div.container-fluid
             a.navbar-brand(href="/") Balanced
-            a(href='/tasks') Tasks
+            ul(id="navOptions")
+              li
+                a(href="http://google.com") Code
+              li
+                if isAuthorized
+                  a(href='/signout') Sign Out
+                else
+                  a(id="signinButton") Sign In
   body
     block content
