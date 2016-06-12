@@ -41,6 +41,15 @@ app.get("/", function(req, res) {
   });
 });
 
+app.post('/tasks/:id', function(req, res) {
+  console.log('delete single: ' + req.params.id);
+  repository.deleteSingle(req.params.id, function(err, task) {
+    if (err) console.log(err);
+    console.log('deleted task ', task._id)
+    res.redirect('/tasks');
+  });
+});
+
 app.post("/tasks", bodyParser.json(), function(req, res) {
   console.log('insert new task: ' + req.body);
   repository.insert(req.body.type, req.body.description, req.body.quadrant, function(err) {
