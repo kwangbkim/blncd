@@ -1,7 +1,7 @@
 var mailin = require('mailin'),
-  balancedRequest = require('./balanced-request'),
-  sendMail = require('./send-mail'),
-  intentClassifier = require('./intent-classifier');
+  balancedRequest = require('./libs/balanced-request'),
+  sendMail = require('./libs/send-mail'),
+  intentClassifier = require('./libs/intent-classifier');
 
 mailin.start({
   port: 25,
@@ -10,7 +10,7 @@ mailin.start({
 
 mailin.on('message', function(connection, data, content) {
   var sentence = data.text.split("\n")[0];
-  console.log('receied request for: ' + sentence);
+  console.log('received request for: ' + sentence);
 
   var first = sentence.split(" ")[0];
   if (first != 'note') {

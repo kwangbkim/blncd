@@ -1,16 +1,16 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var props = require('./properties');
-var freeFormRequest = require('./free-form');
-var repository = require('./tasks-repository');
+var props = require('./libs/properties');
+var freeFormRequest = require('./libs/free-form');
+var repository = require('./libs/tasks-repository');
 var path = require('path');
 
 var app = express();
 app.set('view engine', 'jade');
-app.set('views', path.join(__dirname, '/../public'));
+app.set('views', path.join(__dirname, '/views'));
 
-app.use(express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/views'));
 
 mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
