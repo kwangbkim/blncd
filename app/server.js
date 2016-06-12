@@ -46,7 +46,7 @@ app.post('/tasks/:id', function(req, res) {
   repository.deleteSingle(req.params.id, function(err, task) {
     if (err) console.log(err);
     console.log('deleted task ', task._id)
-    res.redirect('/tasks');
+    res.redirect('/');
   });
 });
 
