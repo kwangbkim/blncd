@@ -3,7 +3,7 @@ var props = require('./properties'),
   jsrender = require('jsrender') ,
   sendgrid = require('sendgrid')(props.get('SENDGRID'));
 
-function mail(description, callback) {
+function mail(key, description, callback) {
   var send = function(err, tasks) {
     if (tasks) {
       sendgrid.send({
@@ -19,9 +19,9 @@ function mail(description, callback) {
 
   var type = description.split(' ')[1];
   if (type) {
-    repository.getTasksByType(type, send);
+    repository.getTasksByType(key, type, send);
   } else {
-    repository.getAllTasks(send);
+    repository.getAllTasks(key, send);
   }
 }
 

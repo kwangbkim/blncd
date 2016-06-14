@@ -3,12 +3,12 @@ var assert = require('assert'),
 
 var stubs = {
 	'./tasks-repository': {
-		'deleteByType': function(id, callback) {
+		'deleteByType': function(key, id, callback) {
 			callback(id);
 		}
 	},
 	'./fuzzy-match': {
-		'search': function(description, searchField, callback) {
+		'search': function(key, description, searchField, callback) {
 			callback([description]);
 		}
 	}
@@ -21,14 +21,14 @@ describe('delete-task-type', function() {
 		var task = {
 			type: 'type'
 		};
-		deleteTask(task, function(type) {
+		deleteTask("key", task, function(type) {
 			assert.equal('type', type);
 			done();
 		});
 	});
 
 	it('should return message when no type found', function(done) {
-		deleteTask(null, function(err, res) {
+		deleteTask("key", null, function(err, res) {
 			assert.equal('no match found for type: null', err);
 			assert.equal(null, res);
 			done();

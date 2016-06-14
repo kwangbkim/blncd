@@ -2,8 +2,9 @@ var Task = require('./tasks');
 var mongoose = require('mongoose');
 
 module.exports = {
-  deleteByType: function(type, callback) {
+  deleteByType: function(key, type, callback) {
     Task.find({
+      key: key,
       type: type
     }).remove(callback);
   },
@@ -20,27 +21,30 @@ module.exports = {
     });
   },
 
-  getAllTasks: function(callback) {
-    Task.find({}).sort('quadrant').exec(callback);
+  getAllTasks: function(key, callback) {
+    Task.find({ key: key }).sort('quadrant').exec(callback);
   },
 
-  getTasksByQuadrant: function(quadrant, callback) {
+  getTasksByQuadrant: function(key, quadrant, callback) {
     Task.find({
+      key: key,
       quadrant: parseInt(quadrant)
     }, callback);
   },
   
-  getTasksByType: function(type, callback) {
+  getTasksByType: function(key, type, callback) {
     Task.find({
+      key: key,
       type: type
     }).sort('quadrant').exec(callback);
   },
 
-  insert: function(type, description, quadrant, callback) {
+  insert: function(task, callback) {
     var task = new Task({
-      description: description,
-      quadrant: quadrant,
-      type: type
+      key: task.key,
+      description: task.description,
+      quadrant: task.quadrant,
+      type: task.type
     });
     task.save(callback);
   }

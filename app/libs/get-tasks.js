@@ -1,18 +1,19 @@
-var repository = require('./tasks-repository'),
-  fuzzy = require('./fuzzy-match');
+var repository = require('./tasks-repository');
+var fuzzy = require('./fuzzy-match');
 
-module.exports = function(description, callback) {
+module.exports = function(key, description, callback) {
   var type = description.split(' ')[1];
   if (type) {
-    fuzzy.search(type, 'type', function(tasks) {
+    fuzzy.search(key, type, 'type', function(tasks) {
       if (tasks.length > 0) {
         var bestMatch = tasks[0];
-        repository.getTasksByType(bestMatch.type, callback);
+        repository.getTasksByType(key, bestMatch.type, callback);
       } else {
-        callback("no match found for type: " + description, null);
+        console.log("no type match found for user " + key + ", type " + type);
+        callback(null, []);
       }
     });
   } else {
-    repository.getAllTasks(callback);
+    repository.getAllTasks(key, callback);
   }
 }

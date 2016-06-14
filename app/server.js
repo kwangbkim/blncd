@@ -17,28 +17,11 @@ mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
   .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
 
-app.get("/", function(req, res) {
-  console.log('retrieving tasks');
-  var f = function(task, quadrant) {
-    return task.quadrant == quadrant;
-  };
-
-  tasksRepository.getAllTasks(function(err, tasks) {
+app.get("/tasks/:key", function(req, res) {
+  console.log("retrieving tasks for user " + req.params.key);
+  tasksRepository.getAllTasks(req.params.key, function(err, tasks) {
     if (err) console.log(err);
-    res.render('tasks', {
-      tasks1: tasks.filter(function(t) {
-        return f(t, 1);
-      }) || [],
-      tasks2: tasks.filter(function(t) {
-        return f(t, 2);
-      }) || [],
-      tasks3: tasks.filter(function(t) {
-        return f(t, 3);
-      }) || [],
-      tasks4: tasks.filter(function(t) {
-        return f(t, 4);
-      }) || []
-    });
+    res.status(200).send(tasks);
   });
 });
 
@@ -53,7 +36,7 @@ app.post('/tasks/:id', function(req, res) {
 
 app.post("/tasks", bodyParser.json(), function(req, res) {
   console.log('insert new task: ' + req.body);
-  tasksRepository.insert(req.body.type, req.body.description, req.body.quadrant, function(err) {
+  tasksRepository.insert(req.body, function(err) {
     if (err) console.log(err);
     res.status(201).send();
   });
@@ -61,7 +44,7 @@ app.post("/tasks", bodyParser.json(), function(req, res) {
 
 app.post("/requests", bodyParser.json(), function(req, res) {
   console.log(req.body);
-  freeFormRequest(req.body.ask, function(err, result) {
+  freeFormRequest(req.body.key, req.body.ask, function(err, result) {
     if (err) console.log(err);
     if (result) res.send(result);
     res.status(400).send();

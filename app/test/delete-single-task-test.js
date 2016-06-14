@@ -8,7 +8,7 @@ var stubs = {
 		}
 	},
 	'./fuzzy-match': {
-		'search': function(description, searchField, callback) {
+		'search': function(key, description, searchField, callback) {
 			callback([description]);
 		}
 	}
@@ -21,14 +21,14 @@ describe('delete-single-task', function() {
 		var task = {
 			_id: 'id'
 		};
-		deleteTask(task, function(id) {
+		deleteTask("key", task, function(id) {
 			assert.equal('id', id);
 			done();
 		});
 	});
 
 	it('should return message when no task found', function(done) {
-		deleteTask(null, function(err, res) {
+		deleteTask("key", null, function(err, res) {
 			assert.equal('no match found', err);
 			assert.equal(null, res);
 			done();

@@ -13,13 +13,13 @@ var commands = {
   'mail': sendMail
 }
 
-module.exports = function(sentence, callback) {
+module.exports = function(key, sentence, callback) {
   var description = sentence.substring(sentence.indexOf(' '));
   var intent = classify(sentence.split(" ")[0]);
 
   var command = commands[intent];
   if (command)
-    command(description, callback);
+    command(key, description, callback);
   else
     callback('cant classify intent for: ' + sentence.split(" ")[0], null);
 };
