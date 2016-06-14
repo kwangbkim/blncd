@@ -1,5 +1,5 @@
-var Task = require('./tasks'),
-  mongoose = require('mongoose');
+var Task = require('./tasks');
+var mongoose = require('mongoose');
 
 module.exports = {
   deleteByType: function(type, callback) {

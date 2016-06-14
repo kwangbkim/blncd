@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var props = require('./libs/properties');
 var freeFormRequest = require('./libs/free-form');
-var repository = require('./libs/tasks-repository');
+var tasksRepository = require('./libs/tasks-repository');
+var usersRepository = require('./libs/users-repository');
 var path = require('path');
 
 var app = express();
@@ -22,7 +23,7 @@ app.get("/", function(req, res) {
     return task.quadrant == quadrant;
   };
 
-  repository.getAllTasks(function(err, tasks) {
+  tasksRepository.getAllTasks(function(err, tasks) {
     if (err) console.log(err);
     res.render('tasks', {
       tasks1: tasks.filter(function(t) {
@@ -43,7 +44,7 @@ app.get("/", function(req, res) {
 
 app.post('/tasks/:id', function(req, res) {
   console.log('delete single: ' + req.params.id);
-  repository.deleteSingle(req.params.id, function(err, task) {
+  tasksRepository.deleteSingle(req.params.id, function(err, task) {
     if (err) console.log(err);
     console.log('deleted task ', task._id)
     res.redirect('/');
@@ -52,7 +53,7 @@ app.post('/tasks/:id', function(req, res) {
 
 app.post("/tasks", bodyParser.json(), function(req, res) {
   console.log('insert new task: ' + req.body);
-  repository.insert(req.body.type, req.body.description, req.body.quadrant, function(err) {
+  tasksRepository.insert(req.body.type, req.body.description, req.body.quadrant, function(err) {
     if (err) console.log(err);
     res.status(201).send();
   });
@@ -64,6 +65,41 @@ app.post("/requests", bodyParser.json(), function(req, res) {
     if (err) console.log(err);
     if (result) res.send(result);
     res.status(400).send();
+  });
+});
+
+app.post("/users", bodyParser.json(), function(req, res) {
+  console.log("create new user");
+  console.log(req.body);
+  var email = req.body ? req.body.email : null;
+  usersRepository.insert(email, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.send("could not create new user: " + err);
+    } else {
+      res.status(201).send( {
+        key: user.key,
+        email: user.email
+      });
+    }
+  });
+});
+
+app.put("/users/:key", bodyParser.json(), function(req, res) {
+  console.log("update user " + req.params.key);
+  console.log(req.body);
+  usersRepository.update(req.params.key, req.body.email, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.status(500).send("could not update user: " + err);
+    } else if(user) {
+      res.status(200).send( {
+        key: user.key,
+        email: user.email
+      });
+    } else {
+      res.status(404).send();
+    }
   });
 });
 
