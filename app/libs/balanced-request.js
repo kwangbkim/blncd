@@ -4,19 +4,22 @@ var request = require('request'),
 
 sf.init();
 
-function call(ask, callback) {
+function call(key, ask, callback) {
   var headers = {
     'Content-Type': 'application/json'
   };
 
-  var options = {
-    url: "http://{0}:{1}/requests".format(
+  var url = "http://{0}:{1}/requests".format(
       props.get('BALANCED_SERVER'),
-      props.get('server:port')),
+      props.get('server:port'));
+  
+  var options = {
+    url: url,
     method: 'POST',
     json: true,
     body: {
       ask: ask,
+      key: key
     }
   };
 

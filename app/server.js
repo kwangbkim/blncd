@@ -44,16 +44,32 @@ app.post("/tasks", bodyParser.json(), function(req, res) {
 
 app.post("/requests", bodyParser.json(), function(req, res) {
   console.log(req.body);
-  freeFormRequest(req.body.key, req.body.ask, function(err, result) {
-    if (err) console.log(err);
-    if (result) res.send(result);
-    res.status(400).send();
-  });
+  res.setHeader('Content-Type', 'application/json');
+
+  var apiKey = req.body.key;
+  usersRepository.getByKey(req.body.key, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+    } else if (!user){
+      console.log("could not find user with api key: " + apiKey);
+      res.status(404).send(JSON.stringify({ error: "could not validate api key: " + apiKey}));
+    } else {
+      freeFormRequest(req.body.key, req.body.ask, function(err, result) {
+        if (err) {
+          console.log(err);
+          res.status(400).send(JSON.stringify({ error: err }));
+        }
+        if (result) res.send(result);
+      });
+    }
+  })
 });
 
 app.post("/users", bodyParser.json(), function(req, res) {
   console.log("create new user");
   console.log(req.body);
+
   var email = req.body ? req.body.email : null;
   usersRepository.insert(email, function(err, user) {
     if (err) {

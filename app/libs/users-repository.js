@@ -3,6 +3,10 @@ var mongoose = require('mongoose');
 var hat = require('hat');
 
 module.exports = {
+  getByKey: function(key, callback) {
+    User.findOne({ key: key }, callback);
+  },
+
   insert: function(email, callback) {
     var key = hat();
     var user = new User({
