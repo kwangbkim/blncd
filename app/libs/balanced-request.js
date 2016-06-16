@@ -1,6 +1,6 @@
-var request = require('request'),
-  sf = require('./string-format'),
-  props = require('./properties');
+var request = require('request');
+var sf = require('./string-format');
+var props = require('./properties');
 
 sf.init();
 
