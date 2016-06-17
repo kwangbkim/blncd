@@ -20,7 +20,7 @@ mongoose.connect(props.get("mongo:url")
 app.get("/tasks/:key", function(req, res) {
   console.log("retrieving tasks for user " + req.params.key);
   tasksRepository.getAllTasks(req.params.key, function(err, tasks) {
-    if (err) console.log(err);
+    if (err) console.error(err);
     res.status(200).send(tasks);
   });
 });
@@ -28,7 +28,7 @@ app.get("/tasks/:key", function(req, res) {
 app.post('/tasks/:id', function(req, res) {
   console.log('delete single: ' + req.params.id);
   tasksRepository.deleteSingle(req.params.id, function(err, task) {
-    if (err) console.log(err);
+    if (err) console.error(err);
     console.log('deleted task ', task._id)
     res.redirect('/');
   });
@@ -37,7 +37,7 @@ app.post('/tasks/:id', function(req, res) {
 app.post("/tasks", bodyParser.json(), function(req, res) {
   console.log('insert new task: ' + req.body);
   tasksRepository.insert(req.body, function(err) {
-    if (err) console.log(err);
+    if (err) console.error(err);
     res.status(201).send();
   });
 });
@@ -50,15 +50,19 @@ app.post("/requests", bodyParser.json(), function(req, res) {
   usersRepository.getByKey(req.body.key, function(err, user) {
     if (err) {
       console.log(err);
-      res.status(500).send();
-    } else if (!user){
+      res.status(500).send({
+        error: err
+      });
+    } else if (!user) {
       console.log("could not find user with api key: " + apiKey);
-      res.status(404).send(JSON.stringify({ error: "could not validate api key: " + apiKey}));
+      res.status(404).send();
     } else {
       freeFormRequest(req.body.key, req.body.ask, function(err, result) {
         if (err) {
-          console.log(err);
-          res.status(400).send(JSON.stringify({ error: err }));
+          console.error(err);
+          res.status(400).send(JSON.stringify({
+            error: err
+          }));
         }
         if (result) res.send(result);
       });
@@ -67,16 +71,19 @@ app.post("/requests", bodyParser.json(), function(req, res) {
 });
 
 app.post("/users", bodyParser.json(), function(req, res) {
-  console.log("create new user");
-  console.log(req.body);
+  console.log("create new user:", req.body);
 
+  res.setHeader('Content-Type', 'application/json');
   var email = req.body ? req.body.email : null;
   usersRepository.insert(email, function(err, user) {
     if (err) {
-      console.log(err);
-      res.send("could not create new user: " + err);
+      console.error(err);
+      res.status(400).send({
+        message: "could not create new user",
+        error: err
+      });
     } else {
-      res.status(201).send( {
+      res.status(201).send({
         key: user.key,
         email: user.email
       });
@@ -85,14 +92,17 @@ app.post("/users", bodyParser.json(), function(req, res) {
 });
 
 app.put("/users/:key", bodyParser.json(), function(req, res) {
-  console.log("update user " + req.params.key);
-  console.log(req.body);
+  console.log("update user %s:", req.params.key, req.body);
+
   usersRepository.update(req.params.key, req.body.email, function(err, user) {
     if (err) {
-      console.log(err);
-      res.status(500).send("could not update user: " + err);
-    } else if(user) {
-      res.status(200).send( {
+      console.error(err);
+      res.status(500).send({
+        message: "could not update user",
+        error: err
+      });
+    } else if (user) {
+      res.status(200).send({
         key: user.key,
         email: user.email
       });
