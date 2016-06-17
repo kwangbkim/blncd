@@ -18,7 +18,7 @@ mailin.start({
 mailin.on('message', function(connection, data, content) {
   var email = data.from[0].address;
   var sentence = data.text.split("\n")[0];
-  console.log('received request from %s for %s: ', email, sentence);
+  console.log('received request from %s: %s ', email, sentence);
 
   usersRepository.getByEmail(email, function(err, user) {
     if (err) console.log(err);
