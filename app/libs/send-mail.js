@@ -12,11 +12,12 @@ function mail(key, description, callback) {
         callback("no user found for key:" + key, null);
       } else {
         if (tasks) {
+          var template = jsrender.templates('{{:description}}<br/>');
           sendgrid.send({
             to: user.email,
             from: props.get('BALANCED_SERVER_EMAIL'),
             subject: "Balanced",
-            html: jsrender.renderFile('./templates/email-template.html', tasks)
+            html: template.render(tasks)
           }, function(err, json) {
             callback(err, json);
           });
