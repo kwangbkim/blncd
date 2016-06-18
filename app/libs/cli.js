@@ -19,9 +19,7 @@ if (ask == 'create') {
 			'Content-Type': 'application/json'
 		};
 
-		var url = "http://{0}:{1}/users".format(
-			props.get('BALANCED_SERVER'),
-			props.get('server:port'));
+		var url = "http://blncd.io/api/users"
 
 		var body = answer != null ? {
 			email: answer

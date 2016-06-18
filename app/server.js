@@ -17,7 +17,7 @@ mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
   .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
 
-app.get("/tasks/:key", function(req, res) {
+app.get("/api/tasks/:key", function(req, res) {
   console.log("retrieving tasks for user " + req.params.key);
   tasksRepository.getAllTasks(req.params.key, function(err, tasks) {
     if (err) console.error(err);
@@ -25,7 +25,7 @@ app.get("/tasks/:key", function(req, res) {
   });
 });
 
-app.post('/tasks/:id', function(req, res) {
+app.post('/api/tasks/:id', function(req, res) {
   console.log('delete single: ' + req.params.id);
   tasksRepository.deleteSingle(req.params.id, function(err, task) {
     if (err) console.error(err);
@@ -34,7 +34,7 @@ app.post('/tasks/:id', function(req, res) {
   });
 });
 
-app.post("/tasks", bodyParser.json(), function(req, res) {
+app.post("/api/tasks", bodyParser.json(), function(req, res) {
   console.log('insert new task: ' + req.body);
   tasksRepository.insert(req.body, function(err) {
     if (err) console.error(err);
@@ -42,7 +42,7 @@ app.post("/tasks", bodyParser.json(), function(req, res) {
   });
 });
 
-app.post("/requests", bodyParser.json(), function(req, res) {
+app.post("/api/requests", bodyParser.json(), function(req, res) {
   console.log(req.body);
   res.setHeader('Content-Type', 'application/json');
 
@@ -70,7 +70,7 @@ app.post("/requests", bodyParser.json(), function(req, res) {
   })
 });
 
-app.post("/users", bodyParser.json(), function(req, res) {
+app.post("/api/users", bodyParser.json(), function(req, res) {
   console.log("create new user:", req.body);
 
   res.setHeader('Content-Type', 'application/json');
@@ -91,7 +91,7 @@ app.post("/users", bodyParser.json(), function(req, res) {
   });
 });
 
-app.put("/users/:key", bodyParser.json(), function(req, res) {
+app.put("/api/users/:key", bodyParser.json(), function(req, res) {
   console.log("update user %s:", req.params.key, req.body);
 
   usersRepository.update(req.params.key, req.body.email, function(err, user) {

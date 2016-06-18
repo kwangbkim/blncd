@@ -1,17 +1,11 @@
 var request = require('request');
-var sf = require('./string-format');
-var props = require('./properties');
-
-sf.init();
 
 function call(key, ask, callback) {
   var headers = {
     'Content-Type': 'application/json'
   };
 
-  var url = "http://{0}:{1}/requests".format(
-      props.get('BALANCED_SERVER'),
-      props.get('server:port'));
+  var url = "http://blncd.io/api/requests";
   
   var options = {
     url: url,
