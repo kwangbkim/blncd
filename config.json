@@ -1,12 +1,5 @@
 {
   "mongo": {
-    "url": "mongodb://{BALANCED_DB_USER}:{BALANCED_DB_PASSWORD}@ds061258.mlab.com:61258/balanced",
-    "username": "bkwangkim"
-  },
-  "server": {
-    "port": 3000
-  },
-  "user": {
-    "email": "bkwangkim@gmail.com"
+    "url": "mongodb://{BALANCED_DB_USER}:{BALANCED_DB_PASSWORD}@ds061258.mlab.com:61258/balanced"
   }
 }
