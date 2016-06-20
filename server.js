@@ -9,9 +9,9 @@ var path = require('path');
 
 var app = express();
 app.set('view engine', 'jade');
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/public'));
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
 
 mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
