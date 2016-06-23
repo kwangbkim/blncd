@@ -40,4 +40,9 @@ describe('intent-classifier', function() {
     assert.equal(null, classify("asdf043295hf"));
     done();
   });
+
+  it('doesnt care about input casing', function(done) {
+    assert.equal("get", classify("GET"));
+    done();
+  });
 });

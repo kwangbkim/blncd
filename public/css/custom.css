@@ -1,32 +1,31 @@
-.task-header {
-	border-bottom-style: solid;
-	border-color: lightgray;
-	border-width: 1px;
-	color: #585858;
+.header-container {
+	background-color: white;
 }
 
-.centered-container {
-	width: 400px;
-	margin: 0 auto;
+.logo {
+	float: left;
+	padding: 20px 0px 0px 40px;
 }
 
-.input-section {
-	width: 370px;
-	margin: 0 auto;	
+.nav-link-list {
+    text-align: right;
+    vertical-align: middle;
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    padding: 20px 20px 0px 40px;
 }
 
-.task-section {
-	margin-top: 45px;
-	margin-bottom: 45px;
+.nav-link-li {
+    display:inline;
 }
 
-.task-container {
-	width: 400px;
-	margin: 0 auto;
-	border: solid 1px lightgray;
-	border-radius: 15px;
+.nav-link {
+    color: black;
+    padding: 0 10px 10px 10px;
+    text-decoration: none;
 }
 
-.user-status {
-	
+.nav-link:hover {
+    color: lightblue;
 }

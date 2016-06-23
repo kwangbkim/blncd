@@ -5,7 +5,7 @@ var classify = require('./intent-classifier'),
   deleteSingleTask = require('./delete-single-task'),
   get = require('./get-tasks');
 
-var commands = {
+const commands = {
   'delete single': deleteSingleTask,
   'delete type': deleteTasksByType,
   'add': add,

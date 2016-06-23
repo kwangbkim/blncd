@@ -8,17 +8,19 @@ var usersRepository = require('./libs/users-repository');
 var path = require('path');
 
 var app = express();
-app.set('view engine', 'jade');
-app.set('views', path.join(__dirname, '/public'));
-
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
   .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
 
-app.get("/api/tasks/:key", function(req, res) {
-  console.log("retrieving tasks for user " + req.params.key);
+app.get('/', function(req, res) {
+  console.log("get home page");
+  res.render('index');
+});
+
+app.get('/api/tasks/:key', function(req, res) {
+  console.log('retrieving tasks for user ' + req.params.key);
   tasksRepository.getAllTasks(req.params.key, function(err, tasks) {
     if (err) console.error(err);
     res.status(200).send(tasks);
@@ -34,7 +36,7 @@ app.post('/api/tasks/:id', function(req, res) {
   });
 });
 
-app.post("/api/tasks", bodyParser.json(), function(req, res) {
+app.post('/api/tasks', bodyParser.json(), function(req, res) {
   console.log('insert new task: ' + req.body);
   tasksRepository.insert(req.body, function(err) {
     if (err) console.error(err);
@@ -42,7 +44,7 @@ app.post("/api/tasks", bodyParser.json(), function(req, res) {
   });
 });
 
-app.post("/api/requests", bodyParser.json(), function(req, res) {
+app.post('/api/requests', bodyParser.json(), function(req, res) {
   console.log(req.body);
   res.setHeader('Content-Type', 'application/json');
 
@@ -54,7 +56,7 @@ app.post("/api/requests", bodyParser.json(), function(req, res) {
         error: err
       });
     } else if (!user) {
-      console.log("could not find user with api key: " + apiKey);
+      console.log('could not find user with api key: ' + apiKey);
       res.status(404).send();
     } else {
       freeFormRequest(req.body.key, req.body.ask, function(err, result) {
@@ -70,8 +72,8 @@ app.post("/api/requests", bodyParser.json(), function(req, res) {
   })
 });
 
-app.post("/api/users", bodyParser.json(), function(req, res) {
-  console.log("create new user:", req.body);
+app.post('/api/users', bodyParser.json(), function(req, res) {
+  console.log('create new user:', req.body);
 
   res.setHeader('Content-Type', 'application/json');
   var email = req.body ? req.body.email : null;
@@ -79,7 +81,7 @@ app.post("/api/users", bodyParser.json(), function(req, res) {
     if (err) {
       console.error(err);
       res.status(400).send({
-        message: "could not create new user",
+        message: 'could not create new user',
         error: err
       });
     } else {
@@ -91,14 +93,14 @@ app.post("/api/users", bodyParser.json(), function(req, res) {
   });
 });
 
-app.put("/api/users/:key", bodyParser.json(), function(req, res) {
+app.put('/api/users/:key', bodyParser.json(), function(req, res) {
   console.log("update user %s:", req.params.key, req.body);
 
   usersRepository.update(req.params.key, req.body.email, function(err, user) {
     if (err) {
       console.error(err);
       res.status(500).send({
-        message: "could not update user",
+        message: 'could not update user',
         error: err
       });
     } else if (user) {
@@ -112,7 +114,7 @@ app.put("/api/users/:key", bodyParser.json(), function(req, res) {
   });
 });
 
-var server = app.listen(props.get("server:port"), function() {
+var server = app.listen(props.get('server:port'), function() {
   console.log("listening on port ".concat(props.get("server:port")));
 });
 
