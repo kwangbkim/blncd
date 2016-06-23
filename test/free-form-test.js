@@ -1,7 +1,7 @@
-var assert = require('assert'),
-	proxyquire = require('proxyquire');
+const assert = require('assert');
+const proxyquire = require('proxyquire');
 
-var stubs = {
+const stubs = {
 	'./send-mail': function(key, description, callback) {
 		callback('sent mail');
 	},
@@ -19,7 +19,7 @@ var stubs = {
 	}
 };
 
-var ff = proxyquire('../libs/free-form', stubs);
+const ff = proxyquire('../libs/free-form', stubs);
 
 describe('free-form', function() {
 	it('sends mail', function(done) {

@@ -1,7 +1,7 @@
-var assert = require('assert'),
-	proxyquire = require('proxyquire');
+const assert = require('assert');
+const proxyquire = require('proxyquire');
 
-var stubs = {
+const stubs = {
 	'./tasks-repository': {
 		'deleteByType': function(key, id, callback) {
 			callback(id);
@@ -14,11 +14,11 @@ var stubs = {
 	}
 };
 
-var deleteTask = proxyquire('../libs/delete-tasks-type', stubs);
+const deleteTask = proxyquire('../libs/delete-tasks-type', stubs);
 
 describe('delete-task-type', function() {
 	it('should delete when type found', function(done) {
-		var task = {
+		const task = {
 			type: 'type'
 		};
 		deleteTask("key", task, function(type) {

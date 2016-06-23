@@ -1,5 +1,5 @@
-var assert = require('assert'),
-  classify = require('../libs/intent-classifier');
+const assert = require('assert');
+const classify = require('../libs/intent-classifier');
 
 describe('intent-classifier', function() {
   it('sentence should classify deletion task', function(done) {

@@ -1,9 +1,9 @@
-var classify = require('./intent-classifier'),
-  sendMail = require('./send-mail'),
-  add = require('./add-task'),
-  deleteTasksByType = require('./delete-tasks-type'),
-  deleteSingleTask = require('./delete-single-task'),
-  get = require('./get-tasks');
+const classify = require('./intent-classifier');
+const sendMail = require('./send-mail');
+const add = require('./add-task');
+const deleteTasksByType = require('./delete-tasks-type');
+const deleteSingleTask = require('./delete-single-task');
+const get = require('./get-tasks');
 
 const commands = {
   'delete single': deleteSingleTask,
@@ -14,10 +14,10 @@ const commands = {
 }
 
 module.exports = function(key, sentence, callback) {
-  var description = sentence.substring(sentence.indexOf(' '));
-  var intent = classify(sentence.split(" ")[0]);
+  const description = sentence.substring(sentence.indexOf(' '));
+  const intent = classify(sentence.split(" ")[0]);
 
-  var command = commands[intent];
+  const command = commands[intent];
   if (command)
     command(key, description, callback);
   else

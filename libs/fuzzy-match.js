@@ -1,15 +1,15 @@
-var fuse = require('./fuse');
-var tasksRepository = require('./tasks-repository');
-var assert = require('assert');
+const fuse = require('./fuse');
+const tasksRepository = require('./tasks-repository');
+const assert = require('assert');
 
 function search(key, input, field, callback) {
-  var options = {
+  const options = {
     keys: [field]
   };
 
   tasksRepository.getAllTasks(key, function (err, tasks) {
-    var f = new fuse(tasks, options);
-    var result = f.search(input);
+    const f = new fuse(tasks, options);
+    const result = f.search(input);
     callback(result);
   });
 }

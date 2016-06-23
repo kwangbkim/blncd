@@ -1,7 +1,7 @@
-var assert = require('assert'),
-	proxyquire = require('proxyquire');
+const assert = require('assert');
+const proxyquire = require('proxyquire');
 
-var stubs = {
+const stubs = {
 	'./tasks-repository': {
 		'insert': function(task, callback) {
 			callback(task.key, task.type, task.description, task.quadrant);
@@ -9,7 +9,7 @@ var stubs = {
 	}
 };
 
-var add = proxyquire('../libs/add-task', stubs);
+const add = proxyquire('../libs/add-task', stubs);
 
 describe('add-task', function() {
 	it('should trim type field', function(done) {

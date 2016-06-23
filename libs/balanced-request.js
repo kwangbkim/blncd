@@ -1,13 +1,13 @@
-var request = require('request');
+const request = require('request');
 
 function call(key, ask, callback) {
-  var headers = {
+  const headers = {
     'Content-Type': 'application/json'
   };
 
-  var url = "http://blncd.io/api/requests";
+  const url = "http://blncd.io/api/requests";
   
-  var options = {
+  const options = {
     url: url,
     method: 'POST',
     json: true,

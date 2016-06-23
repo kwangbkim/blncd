@@ -1,6 +1,6 @@
-var User = require('./user');
-var mongoose = require('mongoose');
-var hat = require('hat');
+const User = require('./user');
+const mongoose = require('mongoose');
+const hat = require('hat');
 
 module.exports = {
   getByEmail: getByEmail,
@@ -15,8 +15,8 @@ module.exports = {
     getByEmail(email, function(err, user) {
       if (err) callback(err, user);
       if (!user) {
-        var key = hat();
-        var user = new User({
+        const key = hat();
+        const user = new User({
           key: key,
           email: email
         });

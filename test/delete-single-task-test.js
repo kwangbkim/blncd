@@ -1,7 +1,7 @@
-var assert = require('assert'),
-	proxyquire = require('proxyquire');
+const assert = require('assert');
+const proxyquire = require('proxyquire');
 
-var stubs = {
+const stubs = {
 	'./tasks-repository': {
 		'deleteSingle': function(id, callback) {
 			callback(id);
@@ -14,11 +14,11 @@ var stubs = {
 	}
 };
 
-var deleteTask = proxyquire('../libs/delete-single-task', stubs);
+const deleteTask = proxyquire('../libs/delete-single-task', stubs);
 
 describe('delete-single-task', function() {
 	it('should delete when task found', function(done) {
-		var task = {
+		const task = {
 			_id: 'id'
 		};
 		deleteTask("key", task, function(id) {

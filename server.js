@@ -1,13 +1,13 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var props = require('./libs/properties');
-var freeFormRequest = require('./libs/free-form');
-var tasksRepository = require('./libs/tasks-repository');
-var usersRepository = require('./libs/users-repository');
-var path = require('path');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const props = require('./libs/properties');
+const freeFormRequest = require('./libs/free-form');
+const tasksRepository = require('./libs/tasks-repository');
+const usersRepository = require('./libs/users-repository');
+const path = require('path');
 
-var app = express();
+const app = express();
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect(props.get("mongo:url")
@@ -48,7 +48,7 @@ app.post('/api/requests', bodyParser.json(), function(req, res) {
   console.log(req.body);
   res.setHeader('Content-Type', 'application/json');
 
-  var apiKey = req.body.key;
+  const apiKey = req.body.key;
   usersRepository.getByKey(req.body.key, function(err, user) {
     if (err) {
       console.log(err);
@@ -76,7 +76,7 @@ app.post('/api/users', bodyParser.json(), function(req, res) {
   console.log('create new user:', req.body);
 
   res.setHeader('Content-Type', 'application/json');
-  var email = req.body ? req.body.email : null;
+  const email = req.body ? req.body.email : null;
   usersRepository.insert(email, function(err, user) {
     if (err) {
       console.error(err);
@@ -114,7 +114,7 @@ app.put('/api/users/:key', bodyParser.json(), function(req, res) {
   });
 });
 
-var server = app.listen(props.get('server:port'), function() {
+const server = app.listen(props.get('server:port'), function() {
   console.log("listening on port ".concat(props.get("server:port")));
 });
 

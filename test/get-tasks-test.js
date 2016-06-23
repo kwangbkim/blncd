@@ -1,7 +1,7 @@
-var assert = require('assert'),
-	proxyquire = require('proxyquire');
+const assert = require('assert');
+const proxyquire = require('proxyquire');
 
-var stubs = {
+const stubs = {
 	'./tasks-repository': {
 		'getTasksByType': function(key, type, callback) {
 			callback(type);
@@ -12,7 +12,7 @@ var stubs = {
 	},
 	'./fuzzy-match': {
 		'search': function(key, type, field, callback) {
-			var task = {
+			const task = {
 				type: type
 			};
 			callback([task]);
@@ -20,7 +20,7 @@ var stubs = {
 	}
 };
 
-var get = proxyquire('../libs/get-tasks', stubs);
+const get = proxyquire('../libs/get-tasks', stubs);
 
 describe('get-tasks', function() {
 	it('get all tasks when nothing specified after command', function(done) {
