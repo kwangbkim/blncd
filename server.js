@@ -36,14 +36,6 @@ app.post('/api/tasks/:id', function(req, res) {
   });
 });
 
-app.post('/api/tasks', bodyParser.json(), function(req, res) {
-  console.log('insert new task: ' + req.body);
-  tasksRepository.insert(req.body, function(err) {
-    if (err) console.error(err);
-    res.status(201).send();
-  });
-});
-
 app.post('/api/requests', bodyParser.json(), function(req, res) {
   console.log(req.body);
   res.setHeader('Content-Type', 'application/json');
