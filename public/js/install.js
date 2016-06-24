@@ -21,7 +21,7 @@ var Header = React.createClass({
 								<a id="nav-link" href="install.html">Install</a>
 							</li>
 							<li>
-								<a id="nav-link" href="usage.html">Usage</a>
+								<a id="nav-link" href="index.html">Usage</a>
 							</li>
 							<li>
 								<a id="nav-link" href="https://github.com/kwangbkim/balanced">Code</a>
@@ -34,49 +34,37 @@ var Header = React.createClass({
   }
 });
 
-var Terminal = React.createClass({
-  getInitialState: function() {
-    return {
-    	text: '$ ',
-    	elapsed: 0
-    };
-  },
-
+var InstallInstructions = React.createClass({
 	render: function() {
 		return (
 			<div className="container">
-				<svg width="300" height="20">
-					<rect width="300" height="20" className="terminal-header" />
-				</svg>
-	      <textarea className="form-control" 
-	      defaultValue={this.state.text} 
-	      readonly
-	      />
-      </div>
-		);
-	}
-});
-
-var Hero = React.createClass({
-	render: function() {
-		return (
-			<div className="container">
-				<h4>Opinionated ToDo list for developers</h4>
-				<Terminal />
+				<div className="row">
+	  			<div className="col-md-2"/>
+	  			<div className="col-md-8">
+	  				<h2 className="header-text">Installation Options</h2>
+						<h4>npm</h4>
+						<pre>
+							$ npm install blncd -g<br/>
+							$ #run initial setup<br/>
+							$ blncd<br/>
+						</pre>
+	  			</div>
+	  			<div className="col-md-2"/>
+				</div>
 			</div>
 		);
 	}
 });
 
-var Index = React.createClass({
-	render: function() {
-		return (
-				<div>
-					<Header />
-					<Hero />
-				</div>
-		);
-	}
+var Install = React.createClass({
+  render: function() {
+    return (
+    		<div>
+		    	<Header />
+		    	<InstallInstructions />
+		    </div>
+    );
+  }
 });
 
-ReactDOM.render(<Index /> , document.getElementById('index'));
+ReactDOM.render(<Install />, document.getElementById('install'));
