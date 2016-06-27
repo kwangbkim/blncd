@@ -2,6 +2,12 @@ const Task = require('./tasks');
 const mongoose = require('mongoose');
 
 module.exports = {
+  deleteByKey: function(key, callback) {
+    Task.find({
+      key: key
+    }).remove(callback);
+  },
+
   deleteByType: function(key, type, callback) {
     Task.find({
       key: key,

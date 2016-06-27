@@ -1,36 +1,51 @@
 const User = require('./user');
 const mongoose = require('mongoose');
 const hat = require('hat');
+const tasksRepository = require('./tasks-repository');
 
 module.exports = {
   getByEmail: getByEmail,
 
-  getByKey: function(key, callback) {
-    User.findOne({
-      key: key
-    }, callback);
+  delete: function(key, callback) {
+    getByKey(key, function(err, user) {
+      if (user) {
+        user.remove();
+        tasksRepository.deleteByKey(key, callback);
+      }
+      callback(err, user);
+    });
   },
 
+  getByKey: getByKey,
+
   insert: function(email, callback) {
-    getByEmail(email, function(err, user) {
-      if (err) callback(err, user);
-      if (!user) {
-        const key = hat();
-        const user = new User({
-          key: key,
-          email: email
-        });
-        user.save(callback);
-      } else {
-        callback("user already exists with email: " + email, null);
-      }
-    });
+    const createAndSave = () => {
+      const key = hat();
+      const user = new User({
+        key: key,
+        email: email
+      });
+      user.save(callback);
+    };
+
+    if (!email) {
+      createAndSave();
+    } else {
+      getByEmail(email, (err, user) => {
+        if (err) callback(err, user);
+        if (!user) {
+          createAndSave();
+        } else {
+          callback("user already exists with email: " + email, null);
+        }
+      });
+    }
   },
 
   update: function(key, email, callback) {
     User.findOne({
       key: key
-    }, function(err, user) {
+    }, (err, user) => {
       if (user) {
         user.email = email;
         user.save();
@@ -43,5 +58,11 @@ module.exports = {
 function getByEmail(email, callback) {
   User.findOne({
     email: email
+  }, callback);
+}
+
+function getByKey(key, callback) {
+  User.findOne({
+    key: key
   }, callback);
 }

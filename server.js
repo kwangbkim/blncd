@@ -106,8 +106,27 @@ app.put('/api/users/:key', bodyParser.json(), function(req, res) {
   });
 });
 
-const server = app.listen(props.get('server:port'), function() {
-  console.log("listening on port ".concat(props.get("server:port")));
+app.delete('/api/users/:key', bodyParser.json(), (req, res) => {
+  console.log("delete user %s:", req.params.key, req.body);
+
+  usersRepository.delete(req.params.key, (err, user) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send({
+        message: 'could not update user',
+        error: err
+      });
+    } else if (user) {
+      res.status(200).send();
+    } else {
+      res.status(404).send();
+    }
+  });
 });
 
-module.exports = server;
+const port = props.get('server:port');
+app.listen(port, function () {
+  console.log('Server running on port %d', port);
+});
+
+module.exports = app;

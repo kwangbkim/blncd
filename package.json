@@ -4,7 +4,7 @@
   "description": "another todo app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "kwang kim",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "sendgrid": "^2.0.0"
   },
   "devDependencies": {
-    "proxyquire": "^1.7.9"
+    "proxyquire": "^1.7.9",
+    "supertest": "^1.2.0"
   }
 }
