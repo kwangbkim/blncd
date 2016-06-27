@@ -3,7 +3,7 @@ const app = require('../server');
 const assert = require('assert');
 const usersRepository = require('../libs/users-repository');
 
-describe('POST /api/users', function() {
+describe('POST /api/users', () => {
 	it('responds with api key', (done) => {
 		supertest(app)
 			.post('/api/users')
@@ -17,7 +17,7 @@ describe('POST /api/users', function() {
 	});
 });
 
-describe('PUT /api/users/:key', function() {
+describe('PUT /api/users/:key', () => {
 	it('updates a user', (done) => {
 		usersRepository.insert(null, (err, user) => {
 			assert.equal(null, err);
@@ -38,7 +38,7 @@ describe('PUT /api/users/:key', function() {
 	});
 });
 
-describe(`DELETE /api/users/:key`, function() {
+describe(`DELETE /api/users/:key`, () => {
 	it('deletes a user', (done) => {
 		usersRepository.insert("test2@test.com", (err, user) => {
 			assert.equal(null, err);

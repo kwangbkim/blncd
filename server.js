@@ -14,34 +14,34 @@ mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
   .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
 
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   console.log("get home page");
   res.render('index');
 });
 
-app.get('/api/tasks/:key', function(req, res) {
+app.get('/api/tasks/:key', (req, res) => {
   console.log('retrieving tasks for user ' + req.params.key);
-  tasksRepository.getAllTasks(req.params.key, function(err, tasks) {
+  tasksRepository.getAllTasks(req.params.key, (err, tasks) => {
     if (err) console.error(err);
     res.status(200).send(tasks);
   });
 });
 
-app.post('/api/tasks/:id', function(req, res) {
+app.post('/api/tasks/:id', (req, res) => {
   console.log('delete single: ' + req.params.id);
-  tasksRepository.deleteSingle(req.params.id, function(err, task) {
+  tasksRepository.deleteSingle(req.params.id, (err, task) => {
     if (err) console.error(err);
     console.log('deleted task ', task._id)
     res.redirect('/');
   });
 });
 
-app.post('/api/requests', bodyParser.json(), function(req, res) {
+app.post('/api/requests', bodyParser.json(), (req, res) => {
   console.log(req.body);
   res.setHeader('Content-Type', 'application/json');
 
   const apiKey = req.body.key;
-  usersRepository.getByKey(req.body.key, function(err, user) {
+  usersRepository.getByKey(req.body.key, (err, user) => {
     if (err) {
       console.log(err);
       res.status(500).send({
@@ -51,7 +51,7 @@ app.post('/api/requests', bodyParser.json(), function(req, res) {
       console.log('could not find user with api key: ' + apiKey);
       res.status(404).send();
     } else {
-      freeFormRequest(req.body.key, req.body.ask, function(err, result) {
+      freeFormRequest(req.body.key, req.body.ask, (err, result) => {
         if (err) {
           console.error(err);
           res.status(400).send(JSON.stringify({
@@ -64,12 +64,12 @@ app.post('/api/requests', bodyParser.json(), function(req, res) {
   })
 });
 
-app.post('/api/users', bodyParser.json(), function(req, res) {
+app.post('/api/users', bodyParser.json(), (req, res) => {
   console.log('create new user:', req.body);
 
   res.setHeader('Content-Type', 'application/json');
   const email = req.body ? req.body.email : null;
-  usersRepository.insert(email, function(err, user) {
+  usersRepository.insert(email, (err, user) => {
     if (err) {
       console.error(err);
       res.status(400).send({
@@ -85,10 +85,10 @@ app.post('/api/users', bodyParser.json(), function(req, res) {
   });
 });
 
-app.put('/api/users/:key', bodyParser.json(), function(req, res) {
+app.put('/api/users/:key', bodyParser.json(), (req, res) => {
   console.log("update user %s:", req.params.key, req.body);
 
-  usersRepository.update(req.params.key, req.body.email, function(err, user) {
+  usersRepository.update(req.params.key, req.body.email, (err, user) => {
     if (err) {
       console.error(err);
       res.status(500).send({
