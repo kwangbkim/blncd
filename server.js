@@ -19,23 +19,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/api/tasks/:key', (req, res) => {
-  console.log('retrieving tasks for user ' + req.params.key);
-  tasksRepository.getAllTasks(req.params.key, (err, tasks) => {
-    if (err) console.error(err);
-    res.status(200).send(tasks);
-  });
-});
-
-app.post('/api/tasks/:id', (req, res) => {
-  console.log('delete single: ' + req.params.id);
-  tasksRepository.deleteSingle(req.params.id, (err, task) => {
-    if (err) console.error(err);
-    console.log('deleted task ', task._id)
-    res.redirect('/');
-  });
-});
-
 app.post('/api/requests', bodyParser.json(), (req, res) => {
   console.log(req.body);
   res.setHeader('Content-Type', 'application/json');
