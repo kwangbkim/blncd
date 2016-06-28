@@ -41,7 +41,7 @@ var InstallInstructions = React.createClass({
 				<div className="row">
 	  			<div className="col-md-2"/>
 	  			<div className="col-md-8">
-	  				<h2 className="header-text">Installation Options</h2>
+	  				<h2 className="install-header">Installation</h2>
 						<h4>npm</h4>
 						<pre>
 							$ npm install blncd -g<br/>

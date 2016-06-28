@@ -24,6 +24,9 @@ var Header = React.createClass({
 								<a id="nav-link" href="usage.html">Usage</a>
 							</li>
 							<li>
+								<a id="nav-link" href="api.html">API</a>
+							</li>
+							<li>
 								<a id="nav-link" href="https://github.com/kwangbkim/balanced">Code</a>
 							</li>
 						</ul>

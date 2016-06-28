@@ -16,13 +16,16 @@
     fill: lightgray;
 }
 
-.header-text {
-	color: navy;
+.default-header {
+    color: navy;
+}
+
+.install-header {
 	margin: 20px 0px;
 }
 
 .usage-header {
-	color: #00004d;
+	color: navy;
 }
 
 .usage-subheader {
@@ -31,4 +34,8 @@
 
 .demo {
 	margin: 0 0 20px 0;
+}
+
+.api-section {
+    margin: 0 0 20px 0;
 }
