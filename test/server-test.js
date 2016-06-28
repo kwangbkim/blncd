@@ -55,3 +55,21 @@ describe(`DELETE /api/users/:key`, () => {
 		});
 	});
 });
+
+describe(`POST /api/requests`, () => {
+	it('sends a new request', (done) => {
+		usersRepository.insert(null, (err, user) => {
+			assert.equal(null, err);
+
+			const key = user.key;
+			supertest(app)
+				.post('/api/requests')
+				.send({ ask: "get", key: key})
+				.expect(200)
+				.end(function(err, res) {
+					if (err) return done(err);
+					done();
+				});
+		});
+	});
+});

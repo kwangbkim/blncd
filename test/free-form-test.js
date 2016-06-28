@@ -1,27 +1,26 @@
 const assert = require('assert');
-const proxyquire = require('proxyquire');
-
-const stubs = {
-	'./send-mail': function(key, description, callback) {
-		callback('sent mail');
-	},
-	'./add-task': function(key, description, callback) {
-		callback('added task');
-	},
-	'./delete-tasks-type': function(key, description, callback) {
-		callback('deleted tasks by type');
-	},
-	'./delete-single-task': function(key, description, callback) {
-		callback('deleted single task');
-	},
-	'./get-tasks': function(key, description, callback) {
-		callback('get tasks');
-	}
-};
-
-const ff = proxyquire('../libs/free-form', stubs);
+const proxyquire = require('proxyquire').noPreserveCache();
 
 describe('free-form', function() {
+	const stubs = {
+		'./send-mail': function(key, description, callback) {
+			callback('sent mail');
+		},
+		'./add-task': function(key, description, callback) {
+			callback('added task');
+		},
+		'./delete-tasks-type': function(key, description, callback) {
+			callback('deleted tasks by type');
+		},
+		'./delete-single-task': function(key, description, callback) {
+			callback('deleted single task');
+		},
+		'./get-tasks': function(key, description, callback) {
+			callback('get tasks');
+		}
+	};
+	const ff = proxyquire('../libs/free-form', stubs);
+
 	it('sends mail', function(done) {
 		ff("key", "mail", function(result) {
 			assert.equal("sent mail", result);

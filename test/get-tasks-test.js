@@ -1,5 +1,5 @@
 const assert = require('assert');
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noPreserveCache();
 
 const stubs = {
 	'./tasks-repository': {

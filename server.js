@@ -36,12 +36,13 @@ app.post('/api/requests', bodyParser.json(), (req, res) => {
     } else {
       freeFormRequest(req.body.key, req.body.ask, (err, result) => {
         if (err) {
-          console.error(err);
-          res.status(400).send(JSON.stringify({
+          console.log(err);
+          res.status(500).send(JSON.stringify({
             error: err
           }));
         }
-        if (result) res.send(result);
+        else 
+          res.send(result);
       });
     }
   })
