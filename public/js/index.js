@@ -52,14 +52,15 @@ var Terminal = React.createClass({
 	    	' ',
 	    	'- Not Important & Not Urgent -',
 	    	'watch game of thrones',
-	    	' ',
+	    	'                ',
 	    	'$ blncd done tom',
 	    	'$ blncd done node',
 	    	'$ blncd get',
 	    	' ',
 	    	'- Not Important & Not Urgent -',
 	    	'watch game of thrones',
-	    	' ',
+	    	'        ',
+	    	'$ blncd mail'
     	],
     	elapsed: 0,
     	currentLine: 0
@@ -86,7 +87,7 @@ var Terminal = React.createClass({
 			if (lineStates[i-1] !== lines[i-1])
 				lineStates[i] = "";	
 			else {
-				if (lines[i].charAt(0) === '$')
+				if (lines[i].charAt(0) === '$' || lines[i].charAt(0) === ' ')
 					lineStates[i] = lines[i].substring(0, this.state.elapsed - lastCompletedLineElapsed);
 				else
 					lineStates[i] = lines[i];
