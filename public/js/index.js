@@ -91,6 +91,8 @@ var Terminal = React.createClass({
 				else
 					lineStates[i] = lines[i];
 			}
+			if (lastCompletedLineElapsed > this.state.elapsed)
+				this.state.elapsed = lastCompletedLineElapsed;
 		}
 
 		var terminalText = lineStates.map(function(line) { 
