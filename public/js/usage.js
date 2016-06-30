@@ -21,7 +21,10 @@ var Header = React.createClass({
 								<a id="nav-link" href="install.html">Install</a>
 							</li>
 							<li>
-								<a id="nav-link" href="index.html">Usage</a>
+								<a id="nav-link" href="usage.html">Usage</a>
+							</li>
+							<li>
+								<a id="nav-link" href="api.html">API</a>
 							</li>
 							<li>
 								<a id="nav-link" href="https://github.com/kwangbkim/balanced">Code</a>
@@ -94,14 +97,14 @@ var UsageInstructions = React.createClass({
 						"add an important & not urgent task 2",
 						"add a not important & urgent task 3",
 						"add a not important & not urgent task 4",
-						"add blank quadrant defaults to not important & not urgent task"
+						"add a not important & not urgent task"
 					]}/>
 				<UsageSection 
 					title="Complete" 
 					commandDescription="[done | complete | delete] [fuzzy matched description]"
 					examples={[
-						"add buy some medicine",
-						"done medicine"
+						"add tasks are finished using a fuzzy match",
+						"done fuzzy"
 					]}/>
 				<UsageSection 
 					title="Complete Category" 

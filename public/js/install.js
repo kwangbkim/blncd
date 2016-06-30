@@ -21,7 +21,10 @@ var Header = React.createClass({
 								<a id="nav-link" href="install.html">Install</a>
 							</li>
 							<li>
-								<a id="nav-link" href="index.html">Usage</a>
+								<a id="nav-link" href="usage.html">Usage</a>
+							</li>
+							<li>
+								<a id="nav-link" href="api.html">API</a>
 							</li>
 							<li>
 								<a id="nav-link" href="https://github.com/kwangbkim/balanced">Code</a>

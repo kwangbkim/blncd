@@ -39,3 +39,20 @@
 .api-section {
     margin: 0 0 20px 0;
 }
+
+#terminal-top {
+    background-color: lightgray;
+    padding: 10px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+#terminal-body {
+    background-color: black;
+    color: lightgray;
+    font-family: monaco;
+    font-style: normal;
+    padding: 20px;
+    font-size: 12px;
+    border-radius: 3px
+}

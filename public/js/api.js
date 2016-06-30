@@ -21,7 +21,10 @@ var Header = React.createClass({
 								<a id="nav-link" href="install.html">Install</a>
 							</li>
 							<li>
-								<a id="nav-link" href="index.html">Usage</a>
+								<a id="nav-link" href="usage.html">Usage</a>
+							</li>
+							<li>
+								<a id="nav-link" href="api.html">API</a>
 							</li>
 							<li>
 								<a id="nav-link" href="https://github.com/kwangbkim/balanced">Code</a>
@@ -84,18 +87,25 @@ var ApiList = React.createClass({
 		return (
 			<div className="container">
 				<ApiSection 
+					url="/api/requests" 
+					description="Add, delete, or email tasks."
+					requestType="POST"
+					requestBody="{ 'email': 'optional' }"
+					responseBody="{ 'key':'api key', 'ask': 'see usage page for examples' }"
+					responseStatus="200 OK"/>
+				<ApiSection 
 					url="/api/users" 
 					description="Sign up for a new api key."
 					requestType="POST"
 					requestBody="{ 'email': 'optional' }"
-					responseBody="{ 'key':'user api key', 'email': 'user email' }"
+					responseBody="{ 'key':'api key', 'email': 'email' }"
 					responseStatus="201 Created"/>
 				<ApiSection 
 					url="/api/users/{key}" 
 					description="Update or remove your email."
 					requestType="PUT"
 					requestBody="{ 'email': 'optional' }"
-					responseBody="{ 'key':'user api key', 'email': 'user email' }"
+					responseBody="{ 'key':'api key', 'email': 'email' }"
 					responseStatus="200 OK"/>
 				<ApiSection 
 					url="/api/users/{key}" 
