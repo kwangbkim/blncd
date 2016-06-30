@@ -102,10 +102,16 @@ var Terminal = React.createClass({
 
 		return (
 			<div className="container">
-				<p id="terminal-top"/>
-	      <p id="terminal-body">
-	      	{terminalText}
-      	</p>
+				<div className="row">
+					<div className="col-md-2 col-sm-2"/>
+					<div className="col-md-8 col-sm-8 col-xs-12">
+						<p id="terminal-top"/>
+			      <p id="terminal-body">
+			      	{terminalText}
+		      	</p>
+					</div>
+					<div className="col-md-2 col-sm-2"/>
+				</div>
       </div>
 		);
 	}
