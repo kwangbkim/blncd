@@ -1,6 +1,6 @@
-'use strict';
+var React = require('react');
 
-var Header = React.createClass({
+module.exports = React.createClass({
   render: function() {
     return (
     	<nav className="navbar navbar-default">
