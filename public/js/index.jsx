@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Header = require('./header');
+var Header = require('./header.jsx');
 
 var Terminal = React.createClass({
   getInitialState: function() {

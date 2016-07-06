@@ -4,11 +4,12 @@
   "description": "another todo app",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "mocha",
-    "build-api": "browserify -t [ babelify --presets [ react ] ] public/js/api.js -o public/js/bundles/api-bundle.js",
-    "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.js -o public/js/bundles/index-bundle.js",
-    "build-install": "browserify -t [ babelify --presets [ react ] ] public/js/install.js -o public/js/bundles/install-bundle.js",
-    "build-usage": "browserify -t [ babelify --presets [ react ] ] public/js/usage.js -o public/js/bundles/usage-bundle.js",
+    "build-api": "browserify -t [ babelify --presets [ react ] ] public/js/api.jsx -o public/js/bundles/api-bundle.js",
+    "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.jsx -o public/js/bundles/index-bundle.js",
+    "build-install": "browserify -t [ babelify --presets [ react ] ] public/js/install.jsx -o public/js/bundles/install-bundle.js",
+    "build-usage": "browserify -t [ babelify --presets [ react ] ] public/js/usage.jsx -o public/js/bundles/usage-bundle.js",
     "build": "npm run build-api && npm run build-index && npm run build-install && npm run build-usage"
   },
   "author": "kwang kim",
@@ -27,6 +28,7 @@
     "nconf": "^0.8.4",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
+    "react-slick": "^0.12.2",
     "request": "^2.71.0",
     "sendgrid": "^2.0.0"
   },
