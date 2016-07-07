@@ -4,7 +4,7 @@ module.exports = React.createClass({
   render: function() {
     return (
     	<nav className="navbar">
-				<div className="container">
+				<div className="container header-container">
 					<div className="text-center">
 						<a className="nav-link" href="install.html">Install</a>
 						<a className="nav-link" href="usage.html">Usage</a>

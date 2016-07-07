@@ -18,9 +18,10 @@ var Hero = React.createClass({
 var Index = React.createClass({
 	render: function() {
 		return (
-			<div className="container-fluid">
+			<div>
+				<Header />
+				<div id="main-container" className="container-fluid">
 				<div className="row main-content">
-					<Header />
 					<a href="/">
 						<img className="logo" src="assets/logo.png"/>
 					</a>
@@ -56,6 +57,7 @@ var Index = React.createClass({
 						</div>
 					</div>
 					<div className="col-md-1 col-sm-1"/>
+				</div>
 				</div>
 			</div>
 		);

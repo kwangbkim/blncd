@@ -4,7 +4,7 @@
   "description": "another todo app",
   "main": "server.js",
   "scripts": {
-    "start": "npm run build-index && nodemon server.js",
+    "start": "npm run build && nodemon server.js",
     "test": "mocha",
     "build-api": "browserify -t [ babelify --presets [ react ] ] public/js/api.jsx -o public/js/bundles/api-bundle.js",
     "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.jsx -o public/js/bundles/index-bundle.js",

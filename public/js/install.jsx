@@ -28,7 +28,7 @@ var Install = React.createClass({
   render: function() {
     return (
     		<div>
-		    	<Header />
+	    		<Header />
 		    	<InstallInstructions />
 		    </div>
     );
