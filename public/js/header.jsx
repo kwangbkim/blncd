@@ -4,19 +4,16 @@ module.exports = React.createClass({
   render: function() {
     return (
     	<nav className="navbar navbar-default">
-				<div className="container-fluid">
+				<div className="container">
 					<div className="navbar-header">
-						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#topnavbar" aria-expanded="false" aria-controls="navbar">
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-						<a href="/">
-							<img className="logo" src="assets/logo.png"/>
-						</a>
 					</div>
-					<div className="collapse navbar-collapse" id="#navbar-collapse-1">
-						<ul className="nav navbar-nav navbar-right">
+					<div className="collapse navbar-collapse" id="topnavbar">
+						<ul className="nav navbar-nav navbar-default">
 							<li>
 								<a id="nav-link" href="install.html">Install</a>
 							</li>

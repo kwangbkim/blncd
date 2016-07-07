@@ -30,7 +30,7 @@ var ApiSection = React.createClass({
 	render: function() {
 		return (
 			<div className="container api-section">
-				<h4 className="default-header">{this.props.requestType} {this.props.url}</h4>
+				<h4 className="api-header">{this.props.requestType} {this.props.url}</h4>
 				<small>{this.props.description}</small>
 				<div className="row">
 					<div className="col-md-6">

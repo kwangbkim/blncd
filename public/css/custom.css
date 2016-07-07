@@ -1,58 +1,132 @@
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+.navbar .navbar-collapse {
+    text-align: center;
+    font-weight: lighter;
+}
 .navbar-default {
-    background-color: white;
-    border-color: white;
-    padding: 10px 5px;
+    background-color: #1258A3;
+    border: none;
+    padding: 1% 0 1% 0;
 }
-
-.navbar-right {
-    display: inline;
-}
-
 #nav-link {
-    color: navy;
+    color: white;
 }
 
-.terminal-header {
-    fill: lightgray;
+.main-content {
+  background-color: #1258A3;
+  min-height: 450px; 
+  height: 100%; 
+  padding: 0 0 80px 0;
+}
+.feature-header {
+  color: gray;
+  text-align: center;
+  margin: 30px 0 10px 0;
+  font-weight: lighter;
+}
+.feature-description {
+  color: gray;
+  text-align: center;
+  margin: 30px 0 0 0;
+  font-weight: lighter; 
+}
+.quadrant-grid-1 {
+  border-right: 1px dotted lightgray;
+  border-bottom: 1px dotted lightgray;
+  vertical-align: middle;
+}
+.quadrant-grid-2 {
+  border-left: 1px dotted lightgray;
+  border-bottom: 1px dotted lightgray;
+  vertical-align: middle;
+}
+.quadrant-grid-3 {
+  border-right: 1px dotted lightgray;
+  border-top: 1px dotted lightgray;
+  vertical-align: middle;
+}
+.quadrant-grid-4 {
+  border-left: 1px dotted lightgray;
+  border-top: 1px dotted lightgray;
+  vertical-align: middle;
 }
 
-.default-header {
-    color: navy;
-}
 
 .install-header {
+  color: #1258A3;
 	margin: 20px 0px;
 }
 
-.usage-header {
-	color: navy;
-}
 
+.usage-header {
+	color: #1258A3;
+}
 .usage-subheader {
 	color: black;
 }
 
-.demo {
-	margin: 0 0 20px 0;
-}
 
 .api-section {
     margin: 0 0 20px 0;
 }
+.api-header {
+    color: #1258A3;
+}
 
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+.logo-text {
+  text-align: center;
+  color: white;
+  font-weight: lighter;
+  margin: 10px 0 20px 0;
+}
+
+
+.terminal-header {
+    fill: lightgray;
+}
 #terminal-top {
     background-color: lightgray;
     padding: 10px;
     margin: 0;
     border-radius: 3px;
 }
-
 #terminal-body {
-    background-color: black;
+    background-color: #252A2B;
     color: lightgray;
     font-family: monaco;
     font-style: normal;
     padding: 20px;
     font-size: 12px;
     border-radius: 3px
+}
+
+
+.email {
+  background-color: #f0f0f5;
+  border-top: 0.5px solid lightgray;
+}
+#email-header {
+  margin: 0;
+  padding: 10px;
+  font-size: 13px;
+}
+#email-body {
+  margin: 0;
+  padding: 10px;
+  font-size: 13px;
+}
+#email-last {
+  padding: 10px;
+}
+.send-button {
+  text-align: right;
+  background-color: lightblue;
 }
