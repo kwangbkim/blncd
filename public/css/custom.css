@@ -3,17 +3,20 @@
     float: none;
 }
 .navbar .navbar-collapse {
-    text-align: center;
     font-weight: lighter;
 }
 .navbar-default {
+    text-align: center;
     background-color: #1258A3;
     border: none;
     padding: 1% 0 1% 0;
+    margin: 0 auto;
 }
 #nav-link {
     color: white;
+    font-weight: lighter;
 }
+
 
 .main-content {
   background-color: #1258A3;
