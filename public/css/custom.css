@@ -1,22 +1,12 @@
-.navbar .navbar-nav {
-    display: inline-block;
-    float: none;
+.nav-link {
+  padding: 0 15px;
+  border-right: 1px solid rgba(255,255,255,0.3);
+  font-weight: lighter;
+  color: white;
 }
-.navbar .navbar-collapse {
-    font-weight: lighter;
+.navbar .nav-link:last-child {
+    border-right: none;
 }
-.navbar-default {
-    text-align: center;
-    background-color: #1258A3;
-    border: none;
-    padding: 1% 0 1% 0;
-    margin: 0 auto;
-}
-#nav-link {
-    color: white;
-    font-weight: lighter;
-}
-
 
 .main-content {
   background-color: #1258A3;
