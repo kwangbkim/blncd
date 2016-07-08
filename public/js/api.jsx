@@ -4,10 +4,12 @@ var Header = require('./header.jsx');
 
 var RequestTab = React.createClass({
 	render: function() {
-		var body = this.props.body ? "\n" + this.props.body : null;
+		var body = JSON.stringify(this.props.body, null, 2);
+		var contentType = this.props.body != null ? "Content-Type: application/json" : null
 		return (
 			<pre>
 				{this.props.requestType} http://blncd.io{this.props.url}<br/>
+				{contentType}<br/>
 				{body}
 			</pre>
 		);
@@ -16,7 +18,7 @@ var RequestTab = React.createClass({
 
 var ResponseTab = React.createClass({
 	render: function() {
-		var body = this.props.body ? "\n" + this.props.body : null;
+		var body = JSON.stringify(this.props.body, null, 2);
 		return (
 			<pre>
 				Status: {this.props.status}<br/>
@@ -50,34 +52,32 @@ var ApiSection = React.createClass({
 var ApiList = React.createClass({
 	render: function() {
 		return (
-			<div className="container">
+			<div className="container api-container">
 				<ApiSection 
 					url="/api/requests" 
 					description="Add, delete, or email tasks."
 					requestType="POST"
-					requestBody="{ 'email': 'optional' }"
-					responseBody="{ 'key':'api key', 'ask': 'see usage page for examples' }"
+					requestBody={{"key":"api key","ask":"add buy apples"}}
+					responseBody={{"description":"buy apples","type":"buy","quadrant":4,"date":"2016-07-08T22:15:44.353Z"}}
 					responseStatus="200 OK"/>
 				<ApiSection 
 					url="/api/users" 
 					description="Sign up for a new api key."
 					requestType="POST"
-					requestBody="{ 'email': 'optional' }"
-					responseBody="{ 'key':'api key', 'email': 'email' }"
+					requestBody={{email: "optional" }}
+					responseBody={{key: "api key", "email": 'email' }}
 					responseStatus="201 Created"/>
 				<ApiSection 
 					url="/api/users/{key}" 
 					description="Update or remove your email."
 					requestType="PUT"
-					requestBody="{ 'email': 'optional' }"
-					responseBody="{ 'key':'api key', 'email': 'email' }"
+					requestBody={{email: "optional" }}
+					responseBody={{key: "api key", email: "email" }}
 					responseStatus="200 OK"/>
 				<ApiSection 
 					url="/api/users/{key}" 
 					description="Remove your key and all associated data."
 					requestType="DELETE"
-					requestBody=""
-					responseBody=""
 					responseStatus="200 OK"/>
 			</div>
 		);

@@ -85,16 +85,16 @@
 
 
 .api-section {
-    margin: 0 0 20px 0;
+  margin: 20px 0 20px 0;
 }
 .api-header {
-    color: #1258A3;
+  color: #1258A3;
 }
 
 
 img {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 .logo-text {
   text-align: center;
@@ -105,22 +105,22 @@ img {
 
 
 .terminal-header {
-    fill: lightgray;
+  fill: lightgray;
 }
 #terminal-top {
-    background-color: lightgray;
-    padding: 10px;
-    margin: 0;
-    border-radius: 3px;
+  background-color: lightgray;
+  padding: 10px;
+  margin: 0;
+  border-radius: 3px;
 }
 #terminal-body {
-    background-color: #252A2B;
-    color: lightgray;
-    font-family: monaco;
-    font-style: normal;
-    padding: 20px;
-    font-size: 12px;
-    border-radius: 3px
+  background-color: #252A2B;
+  color: lightgray;
+  font-family: monaco;
+  font-style: normal;
+  padding: 20px;
+  font-size: 12px;
+  border-radius: 3px
 }
 
 
