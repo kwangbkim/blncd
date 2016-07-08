@@ -16,6 +16,13 @@ var InstallInstructions = React.createClass({
 							$ #run initial setup<br/>
 							$ blncd<br/>
 						</pre>
+						<h3 className="install-header">Optional setup</h3>
+						You can shorten from 'blncd' to 'b' by putting the below function in ~/.bash_profile
+						<pre><code>
+							{"function b() { "}<br/>
+					    {"  blncd $*"}<br/>
+							{"}"}<br/>
+						</code></pre>
 	  			</div>
 	  			<div className="col-md-2"/>
 				</div>
