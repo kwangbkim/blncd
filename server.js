@@ -14,9 +14,19 @@ mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
   .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
 
-app.get('/', (req, res) => {
-  console.log("get home page");
-  res.render('index');
+app.get('/install', (req, res) => {
+  console.log("get install page");
+  res.sendFile(__dirname + '/public/install.html');
+});
+
+app.get('/usage', (req, res) => {
+  console.log("get usage page");
+  res.sendFile(__dirname + '/public/usage.html');
+});
+
+app.get('/api', (req, res) => {
+  console.log("get api page");
+  res.sendFile(__dirname + '/public/usage.html');
 });
 
 app.post('/api/requests', bodyParser.json(), (req, res) => {

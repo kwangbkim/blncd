@@ -6,9 +6,9 @@ module.exports = React.createClass({
     	<nav className="navbar">
 				<div className="container header-container">
 					<div className="text-center">
-						<a className="nav-link" href="install.html">Install</a>
-						<a className="nav-link" href="usage.html">Usage</a>
-						<a className="nav-link" href="api.html">API</a>
+						<a className="nav-link" href="/install">Install</a>
+						<a className="nav-link" href="/usage">Usage</a>
+						<a className="nav-link" href="/api">API</a>
 						<a className="nav-link" href="https://github.com/kwangbkim/balanced">Code</a>
 					</div>
 				</div>
