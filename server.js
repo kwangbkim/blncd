@@ -26,7 +26,7 @@ app.get('/usage', (req, res) => {
 
 app.get('/api', (req, res) => {
   console.log("get api page");
-  res.sendFile(__dirname + '/public/usage.html');
+  res.sendFile(__dirname + '/public/api.html');
 });
 
 app.post('/api/requests', bodyParser.json(), (req, res) => {
