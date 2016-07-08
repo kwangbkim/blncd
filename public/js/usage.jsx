@@ -29,21 +29,25 @@ var UsageSection = React.createClass({
 		});
 		var mailExample = this.props.examples[this.props.examples.length-1];
 		return (
-			<div className="row">
-				<div className="col-md-2 col-sm-2">
-					<h4 className="usage-header">{this.props.title}</h4>
-				</div>
-				<div className="col-md-10 col-sm-10 demo">
-					<h5 className="usage-subheader">CLI</h5>
-					<pre>
-						<strong>blncd {this.props.commandDescription}<br/></strong>
-						{exampleList}
-					</pre>
-					<h5>Email</h5>
-					<pre>
-						<strong>{this.props.commandDescription}<br/></strong>
-						{mailExample}
-					</pre>
+			<div className="container usage-section">
+				<div className="row">
+					<div className="col-md-1 col-sm-1"/>
+					<div className="col-md-2 col-sm-2">
+						<h4 className="usage-header">{this.props.title}</h4>
+					</div>
+					<div className="col-md-8 col-sm-8">
+						<h5 className="usage-subheader">CLI</h5>
+						<pre>
+							<strong>blncd {this.props.commandDescription}<br/></strong>
+							{exampleList}
+						</pre>
+						<h5>Email</h5>
+						<pre>
+							<strong>{this.props.commandDescription}<br/></strong>
+							{mailExample}
+						</pre>
+					</div>
+					<div className="col-md-1 col-sm-1"/>
 				</div>
 			</div>
 		);
