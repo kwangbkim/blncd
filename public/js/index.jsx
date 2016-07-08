@@ -28,20 +28,22 @@ var Index = React.createClass({
 						<h4 className="logo-text">Opinionated task list for developers.</h4>
 						<Hero />
 					</div>
-					<div className="row">
-						<div className="col-md-1 col-sm-1"/>
-						<div className="col-md-5 col-sm-5 col-xs-6">
+					<div className="row feature-section">
+						<div className="col-md-2 col-sm-2"/>
+						<div className="col-md-4 col-sm-4 col-xs-6">
 							<h4 className="feature-header">CLI + Email Integration</h4>
 							<p className="feature-description">
 								Access tasks through your terminal and email.<br/>
 								Add or complete tasks using either one.
 							</p>
 						</div>
-						<div className="col-md-5 col-sm-5 col-xs-6">
+						<div className="col-md-4 col-sm-4 col-xs-6">
 							<h4 className="feature-header">Stephen Covey Time Management Grid</h4>
-							<img src="assets/quadrants.png"/>
+							<p className="feature-description">
+								Separate task priorities into four basic groups.  Keep it simple.
+							</p>
 						</div>
-						<div className="col-md-1 col-sm-1"/>
+						<div className="col-md-2 col-sm-2"/>
 					</div>
 				</div>
 			</div>
