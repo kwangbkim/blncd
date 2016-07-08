@@ -20,6 +20,9 @@
   font-size: 16px;
   color: white;
 }
+.nav-link:hover {
+  color: lightgray;
+}
 .navbar .nav-link:last-child {
   border-right: none;
 }
