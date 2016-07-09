@@ -1,19 +1,18 @@
 var React = require('react');
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
-var Reply = React.createClass({
+var EmailHeader = React.createClass({  
   render: function() {
     return (
-    	<div className="container email">
-      	<div className="row">
-          <div className="col-md-4 col-xs-3"/>
-        	<div className="col-md-6 col-xs-3">
-            <p id="email-body">
-              {this.props.body}
+      <div className="container email-container">
+        <div className="row">
+          <div className="col-md-4 col-sm-4"/>
+          <div className="col-md-4 col-sm-4 email">
+            <p className="email-header">
+              Tasks from blncd.io
             </p>
           </div>
-          <div className="col-md-2 col-xs-9">
-         		<button>send</button>
-          </div>
+          <div className="col-md-4 col-sm-4"/>
         </div>
       </div>
     );
@@ -28,19 +27,18 @@ var Email = React.createClass({
 		});
     
     return (
-    	<div className="container email">
-      	<div className="row">
-          <div className="col-md-4"/>
-          <div className="col-md-6">
-          	<p id="email-header">
-            	<strong>{this.props.address}</strong><br/>
-              subject: blncd tasks
-            </p>
-            <p id="email-body">
-  						{body}
-            </p>
+      <div key={this.props.key}>
+      	<div className="container email-container">
+        	<div className="row">
+            <div className="col-md-4 col-sm-4"/>
+            <div className="col-md-4 col-sm-4 email">
+            	<p className="email-body">
+              	<strong>{this.props.address}</strong><br/>
+                {body}
+              </p>
+            </div>
+            <div className="col-md-4 col-sm-4"/>
           </div>
-          <div className="col-md-2"/>
         </div>
       </div>
     );
@@ -48,18 +46,55 @@ var Email = React.createClass({
 });
 
 var EmailDemo = React.createClass({
+  getInitialState: function() {
+    return {
+      elapsed: 1
+    };
+  },
+  tick: function() {
+    this.setState({elapsed: this.state.elapsed + 1});
+  },
+  componentDidMount: function() {
+    this.interval = setInterval(this.tick, 2000);
+  },
+  componentWillUnmount: function() {
+    clearInterval(this.interval);
+  },
   render: function() {
+    var actions = [
+      {
+        lines: ['read nodejs book', 'buy apples'],
+        address: 'from: tasks@blncd.io'
+      },
+      {
+        lines: ['done node'],
+        address: 'to: tasks@blncd.io'
+      },
+      {
+        lines: ['add research vacation ideas 1'],
+        address: 'to: tasks@blncd.io'
+      },
+      {
+        lines: ['done apples'],
+        address: 'to: tasks@blncd.io'
+      },
+      {
+        lines: ['mail'],
+        address: 'to: tasks@blncd.io'
+      }
+    ];
+
+    var emails = [];
+    for (var i=0; i<this.state.elapsed && i<actions.length; i++) {
+      emails.push(<Email key={i} lines={actions[i].lines} address={actions[i].address}/>);
+    }
+
     return (
-    	<div className="container">
-        <Email 
-          lines={['read nodejs book', 'do something else']}
-          address="from: tasks@blncd.io"
-        />
-        <Email 
-        lines={['done nodejs']}
-        address="to: tasks@blncd.io"
-        />
-        <Reply body="add pick up something"/>
+    	<div className="email-demo-container">
+        <EmailHeader />
+        <ReactCSSTransitionGroup transitionName="email-list" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+          {emails}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

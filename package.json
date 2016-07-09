@@ -28,6 +28,7 @@
     "nconf": "^0.8.4",
     "nuka-carousel": "^2.0.2",
     "react": "^15.2.0",
+    "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.0",
     "react-slick": "^0.12.2",
     "request": "^2.71.0",

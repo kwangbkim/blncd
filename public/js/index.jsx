@@ -9,7 +9,7 @@ var Hero = React.createClass({
 	render: function() {
 		return (
 			<div className="container">
-				<Terminal />
+				<EmailDemo />
 			</div>
 		);
 	}
