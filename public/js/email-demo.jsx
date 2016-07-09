@@ -6,13 +6,13 @@ var EmailHeader = React.createClass({
     return (
       <div className="container email-container">
         <div className="row">
-          <div className="col-md-4 col-sm-4"/>
-          <div className="col-md-4 col-sm-4 email">
+          <div className="col-md-4 col-sm-4 col-xs-1"/>
+          <div className="col-md-4 col-sm-4 col-xs-10 email">
             <p className="email-header">
               Tasks from blncd.io
             </p>
           </div>
-          <div className="col-md-4 col-sm-4"/>
+          <div className="col-md-4 col-sm-4 col-xs-1"/>
         </div>
       </div>
     );
@@ -29,14 +29,14 @@ var Email = React.createClass({
     return (
     	<div className="container email-container">
       	<div className="row">
-          <div className="col-md-4 col-sm-4"/>
-          <div className="col-md-4 col-sm-4 email">
+          <div className="col-md-4 col-sm-4 col-xs-1"/>
+          <div className="col-md-4 col-sm-4 col-xs-10 email">
           	<p className="email-body">
             	<strong>{this.props.direction}: tasks@blncd.io</strong><br/>
               {body}
             </p>
           </div>
-          <div className="col-md-4 col-sm-4"/>
+          <div className="col-md-4 col-sm-4 col-xs-1"/>
         </div>
       </div>
     );
