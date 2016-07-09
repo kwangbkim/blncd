@@ -153,10 +153,12 @@ img {
 .email {
   background-color: #f0f0f5;
   border-top: 0.5px solid lightgray;
+  margin: 0;
 }
 .email-header {
   padding: 10px 0 10px 5px;
   font-weight: 200;
+  margin: 0;
 }
 .email-body {
   margin: 0;
