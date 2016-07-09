@@ -7,9 +7,16 @@ var EmailDemo = require('./email-demo.jsx');
 
 var Hero = React.createClass({
 	render: function() {
+		var settings = {
+			dots: true
+		};
+
 		return (
-			<div className="container">
-				<EmailDemo />
+			<div className="container main-content">
+				<Carousel>
+					<Terminal />
+					<EmailDemo />
+				</Carousel>
 			</div>
 		);
 	}

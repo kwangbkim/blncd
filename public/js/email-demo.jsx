@@ -55,13 +55,17 @@ var EmailDemo = React.createClass({
   componentDidMount: function() {
     this.interval = setInterval(this.tick, 2000);
   },
+  componentDidUpdate: function() {
+    if (this.state.elapsed > 10)
+      this.state.elapsed = 0;
+  },
   componentWillUnmount: function() {
     clearInterval(this.interval);
   },
   render: function() {
     var actions = [
       {
-        lines: ['read nodejs book', 'buy apples'],
+        lines: ['read nodejs book', 'buy apples', 'watch game of thrones'],
         direction: 'from'
       },
       {
@@ -79,6 +83,10 @@ var EmailDemo = React.createClass({
       {
         lines: ['mail'],
         direction: 'to'
+      },
+      {
+        lines: ['research vacation ideas', 'watch game of thrones'],
+        direction: 'from'
       }
     ];
 

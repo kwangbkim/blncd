@@ -70,6 +70,18 @@
   border-top: 1px dotted lightgray;
   vertical-align: middle;
 }
+.slider {
+  height: 500px !important;
+}
+.slider-frame {
+  height: 500px !important;
+}
+.slider-decorator-0 {
+  visibility: hidden !important;
+}
+.slider-decorator-1 {
+  visibility: hidden !important;
+}
 
 
 .install-header {
@@ -140,7 +152,7 @@ img {
   border-top: 0.5px solid lightgray;
 }
 .email-header {
-  margin: 10px 0 10px 5px;
+  padding: 10px 0 10px 5px;
   font-weight: 200;
 }
 .email-body {
