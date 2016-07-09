@@ -35,6 +35,9 @@
   height: 100%; 
   padding: 0 0 80px 0;
 }
+.carousel-container {
+  height: 500px;
+}
 .feature-section {
   margin: 0 0 80px 0;
 }

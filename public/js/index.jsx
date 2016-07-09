@@ -12,7 +12,7 @@ var Hero = React.createClass({
 		};
 
 		return (
-			<div className="container main-content">
+			<div className="container carousel-container">
 				<Carousel>
 					<Terminal />
 					<EmailDemo />
