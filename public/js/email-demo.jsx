@@ -27,18 +27,16 @@ var Email = React.createClass({
 		});
     
     return (
-      <div key={this.props.key}>
-      	<div className="container email-container">
-        	<div className="row">
-            <div className="col-md-4 col-sm-4"/>
-            <div className="col-md-4 col-sm-4 email">
-            	<p className="email-body">
-              	<strong>{this.props.direction}: tasks@blncd.io</strong><br/>
-                {body}
-              </p>
-            </div>
-            <div className="col-md-4 col-sm-4"/>
+    	<div className="container email-container">
+      	<div className="row">
+          <div className="col-md-4 col-sm-4"/>
+          <div className="col-md-4 col-sm-4 email">
+          	<p className="email-body">
+            	<strong>{this.props.direction}: tasks@blncd.io</strong><br/>
+              {body}
+            </p>
           </div>
+          <div className="col-md-4 col-sm-4"/>
         </div>
       </div>
     );
