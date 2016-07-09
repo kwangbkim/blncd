@@ -33,7 +33,7 @@ var Email = React.createClass({
             <div className="col-md-4 col-sm-4"/>
             <div className="col-md-4 col-sm-4 email">
             	<p className="email-body">
-              	<strong>{this.props.address}</strong><br/>
+              	<strong>{this.props.direction}: tasks@blncd.io</strong><br/>
                 {body}
               </p>
             </div>
@@ -64,29 +64,29 @@ var EmailDemo = React.createClass({
     var actions = [
       {
         lines: ['read nodejs book', 'buy apples'],
-        address: 'from: tasks@blncd.io'
+        direction: 'from'
       },
       {
         lines: ['done node'],
-        address: 'to: tasks@blncd.io'
+        direction: 'to'
       },
       {
         lines: ['add research vacation ideas 1'],
-        address: 'to: tasks@blncd.io'
+        direction: 'to'
       },
       {
         lines: ['done apples'],
-        address: 'to: tasks@blncd.io'
+        direction: 'to'
       },
       {
         lines: ['mail'],
-        address: 'to: tasks@blncd.io'
+        direction: 'to'
       }
     ];
 
     var emails = [];
     for (var i=0; i<this.state.elapsed && i<actions.length; i++) {
-      emails.push(<Email key={i} lines={actions[i].lines} address={actions[i].address}/>);
+      emails.push(<Email key={i} lines={actions[i].lines} direction={actions[i].direction}/>);
     }
 
     return (
