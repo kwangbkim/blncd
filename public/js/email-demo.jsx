@@ -53,10 +53,10 @@ var EmailDemo = React.createClass({
     this.setState({elapsed: this.state.elapsed + 1});
   },
   componentDidMount: function() {
-    this.interval = setInterval(this.tick, 3000);
+    this.interval = setInterval(this.tick, 2500);
   },
   componentDidUpdate: function() {
-    if (this.state.elapsed > 10)
+    if (this.state.elapsed > 6)
       this.state.elapsed = 0;
   },
   componentWillUnmount: function() {
