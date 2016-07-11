@@ -7,13 +7,11 @@ An opinionated task list for developers.  Based on Stephen Covey's quadrant base
 [![NPM](https://nodei.co/npm/blncd.png?downloads=true)](https://nodei.co/npm/blncd/)
 
 ## Usage
-Install the module with: `npm install blncd -g`
-This will install a thin API client on your command line.  That exists under a separate repository: [https://github.com/kwangbkim/blncd-cli](https://github.com/kwangbkim/blncd-cli)
+Install the module with: `npm install blncd -g`  
+This will install a thin API client on your command line.  Code for this exists under a separate repository: [https://github.com/kwangbkim/blncd-cli](https://github.com/kwangbkim/blncd-cli)
 
 Details on using the cli/email interface can be found on at the blncd homepage.
 [http://blncd.io/usage](http://blncd.io/usage)
-
-## Client
 
 ## License
 Copyright (c) 2016 Kwang Kim
