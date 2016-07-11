@@ -19,7 +19,7 @@ A minimal, opinionated task list for developers.  Based on Stephen Covey's quadr
 $ npm install -g blncd
 ```
 
-This will install a thin API client on your command line.  Code for this exists under a separate repository: [https://github.com/kwangbkim/blncd-cli](https://github.com/kwangbkim/blncd-cli)
+This will install a thin terminal client on your command line.  Code for this exists under a separate repository: [https://github.com/kwangbkim/blncd-cli](https://github.com/kwangbkim/blncd-cli)
 
 ## Usage
 Details on using the cli/email interface can be found on the blncd homepage.  
