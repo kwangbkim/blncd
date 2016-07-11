@@ -10,7 +10,7 @@ An opinionated task list for developers.  Based on Stephen Covey's quadrant base
 Install the module with: `npm install blncd -g`  
 This will install a thin API client on your command line.  Code for this exists under a separate repository: [https://github.com/kwangbkim/blncd-cli](https://github.com/kwangbkim/blncd-cli)
 
-Details on using the cli/email interface can be found on at the blncd homepage.
+Details on using the cli/email interface can be found on at the blncd homepage.  
 [http://blncd.io/usage](http://blncd.io/usage)
 
 ## License
