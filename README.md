@@ -8,7 +8,8 @@ A minimal, opinionated task list for developers.  Based on Stephen Covey's quadr
 Command Line  
 ![blncd](http://blncd.io/assets/blncd-demo.gif)
 
-Email
+Email  
+![blncd](http://blncd.io/assets/email-demo.gif)
 
 ## Install
 
