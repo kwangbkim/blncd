@@ -8,11 +8,16 @@ A minimal, opinionated task list for developers.  Based on Stephen Covey's quadr
 
 [![NPM](https://nodei.co/npm/blncd.png?downloads=true)](https://nodei.co/npm/blncd/)
 
-## Usage
-Install the module with: `npm install blncd -g`  
+## Install
+
+```
+$ npm install -g blncd
+```
+
 This will install a thin API client on your command line.  Code for this exists under a separate repository: [https://github.com/kwangbkim/blncd-cli](https://github.com/kwangbkim/blncd-cli)
 
-Details on using the cli/email interface can be found on at the blncd homepage.  
+## Usage
+Details on using the cli/email interface can be found on the blncd homepage.  
 [http://blncd.io/usage](http://blncd.io/usage)
 
 ## Similar Projects
@@ -20,5 +25,5 @@ Details on using the cli/email interface can be found on at the blncd homepage.
 [Taskwarrior](https://taskwarrior.org/)
 
 ## License
-Copyright (c) 2016 Kwang Kim
+Copyright (c) 2016 Kwang Kim  
 Licensed under the MIT license.
