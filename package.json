@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run build && nodemon server.js",
-    "test": "istanbul cover _mocha -- -R spec --timeout 5000",
+    "test": "node_modules/istanbul/lib/cli.js cover _mocha -- -R spec --timeout 5000",
     "build-api": "browserify -t [ babelify --presets [ react ] ] public/js/api.jsx -o public/js/bundles/api-bundle.js",
     "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.jsx -o public/js/bundles/index-bundle.js",
     "build-install": "browserify -t [ babelify --presets [ react ] ] public/js/install.jsx -o public/js/bundles/install-bundle.js",
