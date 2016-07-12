@@ -8,7 +8,7 @@ module.exports = function(key, description, callback) {
       const bestMatch = tasks[0];
       repository.deleteSingle(bestMatch._id.toString(), callback);
     } else {
-      callback("no match found", null);
+      callback("cant delete single task for description: " + description, null);
     }
   });
 }
