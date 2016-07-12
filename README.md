@@ -13,8 +13,6 @@ A minimal, opinionated task list for developers.  Based on Stephen Covey's quadr
 
 ## Install
 
-[![NPM](https://nodei.co/npm/blncd.png?downloads=true)](https://nodei.co/npm/blncd/)
-
 ```
 $ npm install -g blncd
 ```
