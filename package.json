@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run build && nodemon server.js",
-    "test": "node_modules/mocha/bin/mocha",
+    "test": "node_modules/mocha/bin/mocha --timeout 5000",
     "build-api": "browserify -t [ babelify --presets [ react ] ] public/js/api.jsx -o public/js/bundles/api-bundle.js",
     "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.jsx -o public/js/bundles/index-bundle.js",
     "build-install": "browserify -t [ babelify --presets [ react ] ] public/js/install.jsx -o public/js/bundles/install-bundle.js",
