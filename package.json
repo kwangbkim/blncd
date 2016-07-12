@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run build && nodemon server.js",
-    "test": "mocha",
+    "test": "node_modules/mocha/bin/mocha",
     "build-api": "browserify -t [ babelify --presets [ react ] ] public/js/api.jsx -o public/js/bundles/api-bundle.js",
     "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.jsx -o public/js/bundles/index-bundle.js",
     "build-install": "browserify -t [ babelify --presets [ react ] ] public/js/install.jsx -o public/js/bundles/install-bundle.js",
@@ -23,6 +23,7 @@
     "hat": "0.0.3",
     "jsrender": "^0.9.75",
     "mailin": "^3.0.3",
+    "mocha": "^2.5.3",
     "mongodb": "^2.1.16",
     "mongoose": "^4.4.14",
     "nconf": "^0.8.4",
