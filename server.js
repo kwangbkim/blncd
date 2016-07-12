@@ -12,7 +12,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
-  .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
+  .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER'))
+  .replace('{BALANCED_DB_URL}', props.get('BALANCED_DB_URL')));
 
 app.get('/install', (req, res) => {
   console.log("get install page");
