@@ -65,7 +65,7 @@ var EmailDemo = React.createClass({
   render: function() {
     var actions = [
       {
-        lines: ['read nodejs book', 'buy apples', 'watch game of thrones'],
+        lines: ['read nodejs book', 'buy apples', 'watch silicon valley'],
         direction: 'from'
       },
       {
@@ -85,7 +85,7 @@ var EmailDemo = React.createClass({
         direction: 'to'
       },
       {
-        lines: ['research vacation ideas', 'watch game of thrones'],
+        lines: ['research vacation ideas', 'watch silicon valley'],
         direction: 'from'
       }
     ];
