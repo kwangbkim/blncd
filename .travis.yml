@@ -1,5 +1,5 @@
 language: node_js
 node_js:
   - 6
-  env:
+env:
   - BALANCED_SERVER_EMAIL=test@blncd.io
