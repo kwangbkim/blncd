@@ -1,4 +1,6 @@
-# ![](/public/assets/readme-logo.png?raw=true) [![Build Status](https://travis-ci.org/kwangbkim/blncd.svg?branch=master)](https://travis-ci.org/kwangbkim/blncd)
+# ![](/public/assets/readme-logo.png?raw=true)
+[![Build Status](https://travis-ci.org/kwangbkim/blncd.svg?branch=master)](https://travis-ci.org/kwangbkim/blncd)
+[![Test Coverage](https://codeclimate.com/github/kwangbkim/blncd/badges/coverage.svg)](https://codeclimate.com/github/kwangbkim/blncd/coverage)
 
 Home page: [http://blncd.io](http://blncd.io)
 
