@@ -5,6 +5,6 @@ env:
   - BALANCED_SERVER_EMAIL=test@blncd.io
 addons:
   code_climate:
-    repo_token: 57854226ffaf01190300298e
+    repo_token: af0ad9a51f6ede1acf367e7ee40b3d774ce9df0dee207158235b031ae0007d2d
 after_script:
   - codeclimate-test-reporter < lcov.info
