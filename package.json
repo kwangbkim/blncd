@@ -23,18 +23,20 @@
     "hat": "0.0.3",
     "jsrender": "^0.9.75",
     "mailin": "^3.0.3",
-    "mocha": "^2.5.3",
     "mongodb": "^2.1.16",
     "mongoose": "^4.4.14",
     "nconf": "^0.8.4",
     "nuka-carousel": "^2.0.2",
-    "react": "^15.2.0",
+    "react": "^15.2.1",
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.0",
     "request": "^2.71.0",
     "sendgrid": "^2.0.0"
   },
   "devDependencies": {
+    "codeclimate-test-reporter": "^0.3.3",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
     "proxyquire": "^1.7.9",
     "supertest": "^1.2.0"
   }
