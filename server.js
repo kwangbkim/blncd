@@ -8,7 +8,7 @@ const usersRepository = require('./libs/users-repository');
 const path = require('path');
 
 const app = express();
-app.use(express.static(path.join(__dirname + '/public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 mongoose.connect(props.get("mongo:url")
   .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
@@ -21,12 +21,12 @@ app.get('/install', (req, res) => {
 
 app.get('/usage', (req, res) => {
   console.log("get usage page");
-  res.sendFile(path.join(__dirname + '/public/usage.html'));
+  res.sendFile(path.join(__dirname, '/public/usage.html'));
 });
 
 app.get('/api', (req, res) => {
   console.log("get api page");
-  res.sendFile(path.join(__dirname + '/public/api.html'));
+  res.sendFile(path.join(__dirname, '/public/api.html'));
 });
 
 app.post('/api/requests', bodyParser.json(), (req, res) => {
