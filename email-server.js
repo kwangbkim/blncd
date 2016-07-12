@@ -7,8 +7,8 @@ const usersRepository = require('./libs/users-repository');
 const props = require('./libs/properties');
 
 mongoose.connect(props.get("mongo:url")
-  .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
-  .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER')));
+  .replace('{BLNCD_DB_PASSWORD}', props.get('BLNCD_DB_PASSWORD'))
+  .replace('{BLNCD_DB_USER}', props.get('BLNCD_DB_USER')));
 
 mailin.start({
   port: 25,

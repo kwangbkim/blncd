@@ -17,7 +17,7 @@ function mail(key, description, callback) {
           const template = jsrender.templates('{{:description}}<br/>');
           sendgrid.send({
             to: user.email,
-            from: props.get('BALANCED_SERVER_EMAIL'),
+            from: props.get('BLNCD_SERVER_EMAIL'),
             subject: "blncd",
             html: template.render(tasks)
           }, function(err, json) {

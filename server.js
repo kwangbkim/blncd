@@ -10,10 +10,14 @@ const path = require('path');
 const app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 
-mongoose.connect(props.get("mongo:url")
-  .replace('{BALANCED_DB_PASSWORD}', props.get('BALANCED_DB_PASSWORD'))
-  .replace('{BALANCED_DB_USER}', props.get('BALANCED_DB_USER'))
-  .replace('{BALANCED_DB_URL}', props.get('BALANCED_DB_URL')));
+let mongoUrl = props.get("mongo:url")
+  .replace('{BLNCD_DB_PASSWORD}', props.get('BLNCD_DB_PASSWORD'))
+  .replace('{BLNCD_DB_USER}', props.get('BLNCD_DB_USER'))
+  .replace('{BLNCD_DB_URL}', props.get('BLNCD_DB_URL'));
+if (props.get('BLNCD_DB_REPLICA'))
+  mongoUrl = mongoUrl + "?replicaSet=" + props.get('BLNCD_DB_REPLICA');
+
+mongoose.connect(mongoUrl);
 
 app.get('/install', (req, res) => {
   console.log("get install page");
@@ -51,8 +55,7 @@ app.post('/api/requests', bodyParser.json(), (req, res) => {
           res.status(500).send(JSON.stringify({
             error: err
           }));
-        }
-        else 
+        } else
           res.send(result);
       });
     }
@@ -120,7 +123,7 @@ app.delete('/api/users/:key', bodyParser.json(), (req, res) => {
 });
 
 const port = props.get('server:port');
-app.listen(port, function () {
+app.listen(port, function() {
   console.log('Server running on port %d', port);
 });
 

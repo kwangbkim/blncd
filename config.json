@@ -1,6 +1,6 @@
 {
 	"mongo": {
-		"url": "mongodb://{BALANCED_DB_USER}:{BALANCED_DB_PASSWORD}@{BALANCED_DB_URL}/blncd"
+		"url": "mongodb://{BLNCD_DB_USER}:{BLNCD_DB_PASSWORD}@{BLNCD_DB_URL}/blncd"
 	},
 	"server": {
 		"port": 3000
