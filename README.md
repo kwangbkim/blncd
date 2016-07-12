@@ -1,4 +1,4 @@
-# ![](/public/assets/readme-logo.png?raw=true)
+# ![](/public/assets/readme-logo.png?raw=true) [![Build Status](https://travis-ci.org/kwangbkim/blncd.svg?branch=master)](https://travis-ci.org/kwangbkim/blncd)
 
 Home page: [http://blncd.io](http://blncd.io)
 
