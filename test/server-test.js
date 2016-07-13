@@ -2,6 +2,7 @@ const supertest = require('supertest');
 const app = require('../server');
 const assert = require('assert');
 const usersRepository = require('../libs/users-repository');
+const hat = require('hat');
 
 function getTest(endpoint, done) {
 	supertest(app)
@@ -33,6 +34,16 @@ describe('GET /api', () => {
 });
 
 describe('POST /api/users', () => {
+	let testUser;
+
+	before(function(done) {
+		usersRepository.insert(`${hat()}@test.com`, (err, user) => {
+			assert.equal(null, err);
+			testUser = user;
+			done();
+		});
+	});
+
 	it('responds with api key', (done) => {
 		supertest(app)
 			.post('/api/users')
@@ -43,6 +54,24 @@ describe('POST /api/users', () => {
 				assert.notEqual(res.body.key, null);
 				done();
 			})
+	});
+
+	it('returns 400 when user with email already exists', (done) => {
+		supertest(app)
+			.post('/api/users')
+			.send({
+				email: testUser.email
+			})
+			.expect(400)
+			.end((err, res) => {
+				assert.equal(null, err);
+				assert.equal("could not create new user", res.body.message);
+				done();
+			})
+	});
+
+	after(function() {
+		usersRepository.delete(testUser.key, (err, user) => {});
 	});
 });
 
