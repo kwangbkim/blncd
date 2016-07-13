@@ -241,4 +241,19 @@ describe(`POST /api/requests`, () => {
 				done();
 			});
 	});
+
+	it('returns 404 when user not found', (done) => {
+		supertest(app)
+			.post('/api/requests')
+			.send({
+				ask: "get",
+				key: "notfound"
+			})
+			.expect(404)
+			.end((err, res) => {
+				if (err) return done(err);
+				assert.equal('could not find user with api key: notfound', res.body.error);
+				done();
+			});
+	});
 });

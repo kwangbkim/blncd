@@ -37,8 +37,11 @@ app.post('/api/requests', bodyParser.json(), (req, res) => {
         error: err
       });
     } else if (!user) {
-      console.log('could not find user with api key: ' + apiKey);
-      res.status(404).send();
+      const msg = 'could not find user with api key: ' + apiKey;
+      console.log(msg);
+      res.status(404).send({
+        error: msg
+      });
     } else {
       freeFormRequest(req.body.key, req.body.ask, (err, result) => {
         if (err) {
