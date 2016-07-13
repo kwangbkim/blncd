@@ -9,7 +9,7 @@ function getTest(endpoint, done) {
 		.send()
 		.expect(200)
 		.end((err, res) => {
-			assert.equal(err, null);
+			if (err) return done(err);
 			done();
 		});
 }
@@ -74,7 +74,7 @@ describe('PUT /api/users/:key', () => {
 			})
 			.expect(404)
 			.end((err, res) => {
-				assert.equal(null, err);
+				if (err) return done(err);
 				done();
 			})
 	});
@@ -91,7 +91,7 @@ describe(`DELETE /api/users/:key`, () => {
 				.send()
 				.expect(200)
 				.end((err, res) => {
-					assert.equal(null, err);
+					if (err) return done(err);
 					done();
 				});
 		});
@@ -112,7 +112,7 @@ describe(`POST /api/requests`, () => {
 				})
 				.expect(200)
 				.end((err, res) => {
-					assert.equal(null, err);
+					if (err) return done(err);
 					done();
 				});
 		});
@@ -131,7 +131,7 @@ describe(`POST /api/requests`, () => {
 				})
 				.expect(200)
 				.end((err, res) => {
-					assert.equal(null, err);
+					if (err) return done(err);
 					done();
 				});
 		});
@@ -159,7 +159,7 @@ describe(`POST /api/requests`, () => {
 						})
 						.expect(200)
 						.end((err, res) => {
-							assert.equal(null, err);
+							if (err) return done(err);
 							assert.equal(true, res.body.length >= 1);
 							done();
 						});
@@ -189,7 +189,7 @@ describe(`POST /api/requests`, () => {
 						})
 						.expect(200)
 						.end((err, res) => {
-							assert.equal(null, err);
+							if (err) return done(err);
 							assert.notEqual(null, res.body._id);
 							done();
 						});
@@ -210,7 +210,7 @@ describe(`POST /api/requests`, () => {
 				})
 				.expect(500)
 				.end((err, res) => {
-					assert.equal(err, null);
+					if (err) return done(err);
 					assert.equal('email has not been setup yet.  you can send a PUT request to update your email', res.body.error);
 					done();
 				});
