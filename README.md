@@ -26,6 +26,33 @@ This will install a thin terminal client on your command line.  Code for this ex
 Details on using the cli/email interface can be found on the blncd homepage.  
 [http://blncd.io/usage](http://blncd.io/usage)
 
+## Developer Quickstart
+Clone the project and download dependencies through npm.  
+
+```
+$ npm install
+```
+
+Add environment variables for MongoDB configuration.  This project uses [mLab](https://mlab.com/) for development which provides a free mongo sandbox.  Feel free to use your own provider or local instance.
+
+```
+BLNCD_DB_URL=dev mongo db url location
+BLNCD_DB_USER=dev mongo username
+BLNCD_DB_PASSWORD=dev mongo password
+```
+
+To run tests with code coverage
+
+```
+$ npm test
+```
+
+To start a local server on port 3000
+
+```
+$ npm start
+```
+
 ## Similar Projects
 [Todo.txt](https://github.com/ginatrapani/todo.txt-cli)  
 [Taskwarrior](https://taskwarrior.org/)
