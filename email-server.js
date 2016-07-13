@@ -2,13 +2,8 @@ const mailin = require('mailin');
 const balancedRequest = require('./libs/balanced-request');
 const sendMail = require('./libs/send-mail');
 const intentClassifier = require('./libs/intent-classifier');
-const mongoose = require('mongoose');
 const usersRepository = require('./libs/users-repository');
-const props = require('./libs/properties');
-
-mongoose.connect(props.get("mongo:url")
-  .replace('{BLNCD_DB_PASSWORD}', props.get('BLNCD_DB_PASSWORD'))
-  .replace('{BLNCD_DB_USER}', props.get('BLNCD_DB_USER')));
+require('./libs/mongo-init');
 
 mailin.start({
   port: 25,

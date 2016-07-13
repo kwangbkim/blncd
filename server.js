@@ -1,23 +1,14 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const props = require('./libs/properties');
 const freeFormRequest = require('./libs/free-form');
 const tasksRepository = require('./libs/tasks-repository');
 const usersRepository = require('./libs/users-repository');
 const path = require('path');
+require('./libs/mongo-init');
 
 const app = express();
 app.use(express.static(path.join(__dirname, '/public')));
-
-let mongoUrl = props.get("mongo:url")
-  .replace('{BLNCD_DB_PASSWORD}', props.get('BLNCD_DB_PASSWORD'))
-  .replace('{BLNCD_DB_USER}', props.get('BLNCD_DB_USER'))
-  .replace('{BLNCD_DB_URL}', props.get('BLNCD_DB_URL'));
-if (props.get('BLNCD_DB_REPLICA'))
-  mongoUrl = mongoUrl + "?replicaSet=" + props.get('BLNCD_DB_REPLICA');
-
-mongoose.connect(mongoUrl);
 
 app.get('/install', (req, res) => {
   console.log("get install page");
