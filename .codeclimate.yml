@@ -22,4 +22,6 @@ ratings:
   paths:
   - server.js
   - email-server.js
-  - lib/**
+  - libs/**
+  - public/**
+  - test/**
