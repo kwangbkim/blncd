@@ -5,12 +5,12 @@ const lists = {
   'get': ['get'],
   'mail': ['send', 'mail', 'email'],
   'delete single': ['done', 'complete', 'delete'],
-  'delete type': ['finish', 'finished'],
+  'delete type': ['finish', 'finished']
 };
 
 const commands = [
   'add', 'new', 'get', 'send', 'mail', 'email',
-  'done', 'complete', 'delete', 'finish', 'finished', 'find',
+  'done', 'complete', 'delete', 'finish', 'finished', 'find'
 ];
 
 module.exports = function (word) {

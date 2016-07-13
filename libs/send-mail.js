@@ -9,9 +9,9 @@ function mail(key, description, callback) {
     usersRepository.getByKey(key, function(err, user) {
       if (err) callback(err, user);
       if (!user) {
-        callback("no user found for key:" + key, null);
+        return callback("no user found for key:" + key, null);
       } else if (!user.email) {
-        callback("email has not been setup yet.  you can send a PUT request to update your email");
+        return callback("email has not been setup yet.  you can send a PUT request to update your email");
       } else {
         if (tasks && tasks.length > 0) {
           const template = jsrender.templates('{{:description}}<br/>');

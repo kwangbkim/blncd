@@ -24,9 +24,9 @@ mailin.on('message', function(connection, data, content) {
     if (err) console.log(err);
     if (user) {
       const first = sentence.split(" ")[0];
-      if (first != 'note') {
+      if (first !== 'note') {
         const command = intentClassifier(first);
-        if (command == 'get') {
+        if (command === 'get') {
           sentence = sentence.replace('get', 'mail');
         }
         balancedRequest(user.key, sentence, function(err, res) {

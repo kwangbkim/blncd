@@ -4,7 +4,7 @@ module.exports = function(key, description, callback) {
 	const tokenizedAsk = description.split(" ");
 	let quadrant = tokenizedAsk[tokenizedAsk.length - 1];
 	if (!isNaN(quadrant)) {
-		quadrant = parseInt(quadrant);
+		quadrant = parseInt(quadrant, 10);
 		description = description.replace(quadrant, '');
 	} else {
 		quadrant = 4;

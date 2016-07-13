@@ -21,5 +21,5 @@ module.exports = function(key, sentence, callback) {
   if (command)
     command(key, description, callback);
   else
-    callback('cant classify intent for: ' + sentence.split(" ")[0], null);
+    return callback('cant classify intent for: ' + sentence.split(" ")[0], null);
 };
