@@ -5,3 +5,11 @@ languages:
   Python: false
 exclude_paths:
   - "libs/fuse.js"
+
+engines:
+duplication:
+  enabled: true
+  config:
+    languages:
+      javascript:
+        mass_threshold: 50
