@@ -3,42 +3,32 @@ const app = require('../server');
 const assert = require('assert');
 const usersRepository = require('../libs/users-repository');
 
+function getTest(endpoint, done) {
+	supertest(app)
+		.get(endpoint)
+		.send()
+		.expect(200)
+		.end((err, res) => {
+			assert.equal(err, null);
+			done();
+		});
+}
+
 describe('GET /install', () => {
 	it('responds with install page', (done) => {
-		supertest(app)
-			.get('/install')
-			.send()
-			.expect(200)
-			.end((err, res) => {
-				assert.equal(err, null);
-				done();
-			})
+		getTest('/install', done);
 	});
 });
 
 describe('GET /usage', () => {
 	it('responds with usage page', (done) => {
-		supertest(app)
-			.get('/usage')
-			.send()
-			.expect(200)
-			.end((err, res) => {
-				assert.equal(err, null);
-				done();
-			})
+		getTest('/usage', done);
 	});
 });
 
 describe('GET /api', () => {
 	it('responds with api page', (done) => {
-		supertest(app)
-			.get('/api')
-			.send()
-			.expect(200)
-			.end((err, res) => {
-				assert.equal(err, null);
-				done();
-			})
+		getTest('/api', done);
 	});
 });
 
@@ -88,12 +78,11 @@ describe('PUT /api/users/:key', () => {
 				done();
 			})
 	});
-
 });
 
 describe(`DELETE /api/users/:key`, () => {
 	it('deletes a user', (done) => {
-		usersRepository.insert("test2@test.com", (err, user) => {
+		usersRepository.insert(null, (err, user) => {
 			assert.equal(null, err);
 
 			const key = user.key;
@@ -102,7 +91,7 @@ describe(`DELETE /api/users/:key`, () => {
 				.send()
 				.expect(200)
 				.end((err, res) => {
-					if (err) return done(err);
+					assert.equal(null, err);
 					done();
 				});
 		});
@@ -123,7 +112,7 @@ describe(`POST /api/requests`, () => {
 				})
 				.expect(200)
 				.end((err, res) => {
-					if (err) return done(err);
+					assert.equal(null, err);
 					done();
 				});
 		});
@@ -142,7 +131,7 @@ describe(`POST /api/requests`, () => {
 				})
 				.expect(200)
 				.end((err, res) => {
-					if (err) return done(err);
+					assert.equal(null, err);
 					done();
 				});
 		});
