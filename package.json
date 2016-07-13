@@ -1,5 +1,5 @@
 {
-  "name": "blncd",
+  "name": "blncd-api",
   "version": "1.0.0",
   "description": "another todo app",
   "main": "server.js",
