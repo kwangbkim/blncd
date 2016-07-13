@@ -4,9 +4,16 @@ var Header = require('./header.jsx');
 
 var TerminalUsageExample = React.createClass({
 	render: function() {
+		var exampleList = this.props.examples.map(function(example) {
+			return (<div>{example}<br/></div>);
+		});
 		return (
 			<div>
-				$ blncd {this.props.value}<br/>
+				<h5 className="usage-subheader">CLI</h5>
+				<pre>
+					<strong>blncd {this.props.commandDescription}<br/></strong>
+					{exampleList}
+				</pre>
 			</div>
 		);
 	}
@@ -14,19 +21,25 @@ var TerminalUsageExample = React.createClass({
 
 var EmailUsageExample = React.createClass({
 	render: function() {
-		return (
+		var contents = (
 			<div>
-				{this.props.value}<br/>
+				<h5>Email</h5>
+				<pre>
+					<strong>{this.props.commandDescription}<br/></strong>
+					{this.props.example}
+				</pre>
 			</div>
 		);
+
+		if (this.props.commandDescription === 'get' || this.props.commandDescription === 'get [category]')
+			contents = null;
+
+		return contents;
 	}
 });
 
 var UsageSection = React.createClass({
 	render: function() {
-		var exampleList = this.props.examples.map(function(request) {
-			return <TerminalUsageExample value={request} />;
-		});
 		var mailExample = this.props.examples[this.props.examples.length-1];
 		return (
 			<div className="container usage-section">
@@ -36,16 +49,8 @@ var UsageSection = React.createClass({
 						<h4 className="usage-header">{this.props.title}</h4>
 					</div>
 					<div className="col-md-8 col-sm-8">
-						<h5 className="usage-subheader">CLI</h5>
-						<pre>
-							<strong>blncd {this.props.commandDescription}<br/></strong>
-							{exampleList}
-						</pre>
-						<h5>Email</h5>
-						<pre>
-							<strong>{this.props.commandDescription}<br/></strong>
-							{mailExample}
-						</pre>
+						<TerminalUsageExample examples={this.props.examples} commandDescription={this.props.commandDescription} />
+						<EmailUsageExample example={mailExample} commandDescription={this.props.commandDescription} />
 					</div>
 					<div className="col-md-1 col-sm-1"/>
 				</div>
