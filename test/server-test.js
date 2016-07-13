@@ -47,23 +47,29 @@ describe('POST /api/users', () => {
 });
 
 describe('PUT /api/users/:key', () => {
-	it('updates a user', (done) => {
+	let testUser;
+
+	before(function(done) {
 		usersRepository.insert(null, (err, user) => {
 			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.put(`/api/users/${key}`)
-				.send({
-					email: "newemail@test.com"
-				})
-				.expect(200)
-				.end((err, res) => {
-					if (err) return done(err);
-					assert.equal("newemail@test.com", res.body.email);
-					done();
-				})
+			testUser = user;
+			done();
 		});
+	});
+
+	it('updates a user', (done) => {
+		const key = testUser.key;
+		supertest(app)
+			.put(`/api/users/${key}`)
+			.send({
+				email: "newemail@test.com"
+			})
+			.expect(200)
+			.end((err, res) => {
+				if (err) return done(err);
+				assert.equal("newemail@test.com", res.body.email);
+				done();
+			});
 	});
 
 	it('returns 404 when user not found', (done) => {
@@ -81,139 +87,129 @@ describe('PUT /api/users/:key', () => {
 });
 
 describe(`DELETE /api/users/:key`, () => {
-	it('deletes a user', (done) => {
+	let testUser;
+	
+	beforeEach(function(done) {
 		usersRepository.insert(null, (err, user) => {
 			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.delete(`/api/users/${key}`)
-				.send()
-				.expect(200)
-				.end((err, res) => {
-					if (err) return done(err);
-					done();
-				});
+			testUser = user;
+			done();
 		});
+	});
+
+	it('deletes a user', (done) => {
+		supertest(app)
+			.delete(`/api/users/${testUser.key}`)
+			.send()
+			.expect(200)
+			.end((err, res) => {
+				if (err) return done(err);
+				done();
+			});
 	});
 });
 
 describe(`POST /api/requests`, () => {
-	it('retrieves tasks', (done) => {
+	let testUser;
+
+	beforeEach(function(done) {
 		usersRepository.insert(null, (err, user) => {
 			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.post('/api/requests')
-				.send({
-					ask: "get",
-					key: key
-				})
-				.expect(200)
-				.end((err, res) => {
-					if (err) return done(err);
-					done();
-				});
+			testUser = user;
+			done();
 		});
+	});
+
+	it('retrieves tasks', (done) => {
+		supertest(app)
+			.post('/api/requests')
+			.send({
+				ask: "get",
+				key: testUser.key
+			})
+			.expect(200)
+			.end((err, res) => {
+				if (err) return done(err);
+				done();
+			});
 	});
 
 	it('adds tasks', (done) => {
-		usersRepository.insert(null, (err, user) => {
-			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.post('/api/requests')
-				.send({
-					ask: "add test task",
-					key: key
-				})
-				.expect(200)
-				.end((err, res) => {
-					if (err) return done(err);
-					done();
-				});
-		});
+		supertest(app)
+			.post('/api/requests')
+			.send({
+				ask: "add test task",
+				key: testUser.key
+			})
+			.expect(200)
+			.end((err, res) => {
+				if (err) return done(err);
+				done();
+			});
 	});
 
 	it('gets tasks by type', (done) => {
-		usersRepository.insert(null, (err, user) => {
-			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.post('/api/requests')
-				.send({
-					ask: "add test task",
-					key: key
-				})
-				.expect(200)
-				.end((err, res) => {
-					assert.equal(null, err);
-					supertest(app)
-						.post('/api/requests')
-						.send({
-							ask: "get test",
-							key: key
-						})
-						.expect(200)
-						.end((err, res) => {
-							if (err) return done(err);
-							assert.equal(true, res.body.length >= 1);
-							done();
-						});
-				});
-		});
+		supertest(app)
+			.post('/api/requests')
+			.send({
+				ask: "add test task",
+				key: testUser.key
+			})
+			.expect(200)
+			.end((err, res) => {
+				assert.equal(null, err);
+				supertest(app)
+					.post('/api/requests')
+					.send({
+						ask: "get test",
+						key: testUser.key
+					})
+					.expect(200)
+					.end((err, res) => {
+						if (err) return done(err);
+						assert.equal(true, res.body.length >= 1);
+						done();
+					});
+			});
 	});
 
 	it('deletes tasks', (done) => {
-		usersRepository.insert(null, (err, user) => {
-			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.post('/api/requests')
-				.send({
-					ask: "add test task",
-					key: key
-				})
-				.expect(200)
-				.end((err, res) => {
-					assert.equal(null, err);
-					supertest(app)
-						.post('/api/requests')
-						.send({
-							ask: "done test task",
-							key: key
-						})
-						.expect(200)
-						.end((err, res) => {
-							if (err) return done(err);
-							assert.notEqual(null, res.body._id);
-							done();
-						});
-				});
-		});
+		supertest(app)
+			.post('/api/requests')
+			.send({
+				ask: "add test task",
+				key: testUser.key
+			})
+			.expect(200)
+			.end((err, res) => {
+				assert.equal(null, err);
+				supertest(app)
+					.post('/api/requests')
+					.send({
+						ask: "done test task",
+						key: testUser.key
+					})
+					.expect(200)
+					.end((err, res) => {
+						if (err) return done(err);
+						assert.notEqual(null, res.body._id);
+						done();
+					});
+			});
 	});
 
 	it('emails tasks to user', (done) => {
-		usersRepository.insert(null, (err, user) => {
-			assert.equal(null, err);
-
-			const key = user.key;
-			supertest(app)
-				.post('/api/requests')
-				.send({
-					ask: "mail",
-					key: key
-				})
-				.expect(500)
-				.end((err, res) => {
-					if (err) return done(err);
-					assert.equal('email has not been setup yet.  you can send a PUT request to update your email', res.body.error);
-					done();
-				});
-		});
+		supertest(app)
+			.post('/api/requests')
+			.send({
+				ask: "mail",
+				key: testUser.key
+			})
+			.expect(500)
+			.end((err, res) => {
+				if (err) return done(err);
+				assert.equal('email has not been setup yet.  you can send a PUT request to update your email', res.body.error);
+				done();
+			});
 	});
 });
