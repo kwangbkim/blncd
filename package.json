@@ -1,5 +1,5 @@
 {
-  "name": "balanced",
+  "name": "blncd",
   "version": "1.0.0",
   "description": "another todo app",
   "main": "server.js",
@@ -10,7 +10,7 @@
     "build-index": "browserify -t [ babelify --presets [ react ] ] public/js/index.jsx -o public/js/bundles/index-bundle.js",
     "build-install": "browserify -t [ babelify --presets [ react ] ] public/js/install.jsx -o public/js/bundles/install-bundle.js",
     "build-usage": "browserify -t [ babelify --presets [ react ] ] public/js/usage.jsx -o public/js/bundles/usage-bundle.js",
-    "build": "npm run build-api && npm run build-index && npm run build-install && npm run build-usage"
+    "build": "mkdir public/js/bundles && npm run build-api && npm run build-index && npm run build-install && npm run build-usage"
   },
   "author": "kwang kim",
   "license": "MIT",
