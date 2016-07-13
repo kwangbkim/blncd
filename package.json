@@ -13,7 +13,7 @@
     "build": "npm run build-api && npm run build-index && npm run build-install && npm run build-usage"
   },
   "author": "kwang kim",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",
