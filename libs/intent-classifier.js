@@ -13,8 +13,9 @@ const commands = [
   'done', 'complete', 'delete', 'finish', 'finished', 'find'
 ];
 
+const f = new fuse(commands);
+
 module.exports = function (word) {
-  const f = new fuse(commands);
   const matches = f.search(word);
 
   for (const k in lists) {
