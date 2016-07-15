@@ -5,7 +5,7 @@ var Header = require('./header.jsx');
 var TerminalUsageExample = React.createClass({
 	render: function() {
 		var exampleList = this.props.examples.map(function(example) {
-			return (<div>{example}<br/></div>);
+			return (<div>blncd {example}<br/></div>);
 		});
 		return (
 			<div>
@@ -97,9 +97,11 @@ var UsageInstructions = React.createClass({
 					]}/>
 				<UsageSection 
 					title="Get" 
-					commandDescription="get"
+					commandDescription="[get | list | ls]"
 					examples={[
-						"get"
+						"get",
+						"list",
+						"ls"
 				]}/>
 				<UsageSection 
 					title="Get Category" 

@@ -2,7 +2,7 @@ const fuse = require('./fuse');
 
 const lists = {
   'add': ['add', 'new'],
-  'get': ['get'],
+  'get': ['get', 'list', 'ls'],
   'mail': ['send', 'mail', 'email'],
   'delete single': ['done', 'complete', 'delete'],
   'delete type': ['finish', 'finished']
@@ -10,7 +10,8 @@ const lists = {
 
 const commands = [
   'add', 'new', 'get', 'send', 'mail', 'email',
-  'done', 'complete', 'delete', 'finish', 'finished', 'find'
+  'done', 'complete', 'delete', 'finish', 'finished', 'find',
+  'list', 'ls'
 ];
 
 const f = new fuse(commands);

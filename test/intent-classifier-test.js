@@ -32,6 +32,8 @@ describe('intent-classifier', function() {
 
   it('sentence should classify getting tasks', function(done) {
     assert.equal("get", classify("get"));
+    assert.equal("get", classify("list"));
+    assert.equal("get", classify("ls"));
     done();
   });
 
