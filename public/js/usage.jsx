@@ -31,7 +31,7 @@ var EmailUsageExample = React.createClass({
 			</div>
 		);
 
-		if (this.props.commandDescription === 'get' || this.props.commandDescription === 'get [category]')
+		if (this.props.title === 'Get' || this.props.title === 'Get Category')
 			contents = null;
 
 		return contents;
@@ -50,7 +50,7 @@ var UsageSection = React.createClass({
 					</div>
 					<div className="col-md-8 col-sm-8">
 						<TerminalUsageExample examples={this.props.examples} commandDescription={this.props.commandDescription} />
-						<EmailUsageExample example={mailExample} commandDescription={this.props.commandDescription} />
+						<EmailUsageExample example={mailExample} commandDescription={this.props.commandDescription} title={this.props.title}/>
 					</div>
 					<div className="col-md-1 col-sm-1"/>
 				</div>
