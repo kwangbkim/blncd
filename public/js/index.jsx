@@ -32,7 +32,7 @@ var Index = React.createClass({
 						<a href="/">
 							<img className="logo" src="assets/logo.png"/>
 						</a>
-						<h4 className="logo-text">Opinionated task list for developers.</h4>
+						<h4 className="logo-text">Simple, opinionated task list for developers.</h4>
 						<Hero />
 					</div>
 					<div className="row feature-section">
@@ -41,11 +41,11 @@ var Index = React.createClass({
 							<h4 className="feature-header">CLI + Email Integration</h4>
 							<p className="feature-description">
 								Access tasks through your terminal and email.<br/>
-								Add or complete tasks using either one.
+								Add or complete tasks using either.
 							</p>
 						</div>
 						<div className="col-md-4 col-sm-4 col-xs-6">
-							<h4 className="feature-header">Stephen Covey Time Management Grid</h4>
+							<h4 className="feature-header">Eisenhower Time Management Method</h4>
 							<p className="feature-description">
 								Separate task priorities into four basic groups.  Keep it simple.
 							</p>
