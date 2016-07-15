@@ -21,6 +21,7 @@ module.exports = function (word) {
 
   for (const k in lists) {
     if (lists[k].indexOf(commands[matches[0]]) > -1) {
+      console.log('matched command: ' + k);
       return k;
     }
   }
