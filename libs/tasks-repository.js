@@ -17,7 +17,7 @@ module.exports = {
   },
 
   deleteSingle: function(id, callback) {
-    log.info('delete single task: ' + id);
+    log.info('deleting document from mongo: ' + id);
     Task.findOne({
       _id: mongoose.Types.ObjectId(id)
     }, function(err, task) {
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   getAllTasks: function(key, callback) {
-    log.info('get all tasks for key: ' + key);
+    log.info('querying mongo to get all tasks for key: ' + key);
     Task.find({ key: key }).sort('quadrant').exec(callback);
   },
 
@@ -48,7 +48,7 @@ module.exports = {
   },
 
   insert: function(task, callback) {
-    log.info('insert a new task for key: ' + task.key);
+    log.info('insert new task into mongo for key: ' + task.key);
     const taskToSave = new Task({
       key: task.key,
       description: task.description,

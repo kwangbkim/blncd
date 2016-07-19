@@ -1,6 +1,8 @@
 const repository = require('./tasks-repository');
+const log = require('./log');
 
 module.exports = function(key, description, callback) {
+	log.log('info', 'adding task for key: %s, desc: %s', key, description);
 	const tokenizedAsk = description.split(" ");
 	let quadrant = tokenizedAsk[tokenizedAsk.length - 1];
 	if (!isNaN(quadrant)) {

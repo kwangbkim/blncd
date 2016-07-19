@@ -57,14 +57,14 @@ module.exports = {
 };
 
 function getByEmail(email, callback) {
-  log.info('find user by email: ' + email);
+  log.info('querying mongo for user with email: ' + email);
   User.findOne({
     email: email
   }, callback);
 }
 
 function getByKey(key, callback) {
-  log.info('find user by key: ' + key);
+  log.info('querying mongo for user with key: ' + key);
   User.findOne({
     key: key
   }, callback);

@@ -4,6 +4,7 @@ const add = require('./add-task');
 const deleteTasksByType = require('./delete-tasks-type');
 const deleteSingleTask = require('./delete-single-task');
 const get = require('./get-tasks');
+const log = require('./log');
 
 const commands = {
   'delete single': deleteSingleTask,
@@ -18,8 +19,10 @@ module.exports = function(key, sentence, callback) {
   const intent = classify(sentence.split(" ")[0]);
 
   const command = commands[intent];
-  if (command)
+  if (command) {
     command(key, description, callback);
+    log.log('info', 'finished %s command for key %s', intent, key);
+  }
   else
     return callback('cant classify intent for: ' + sentence.split(" ")[0], null);
 };

@@ -23,7 +23,7 @@ module.exports = function (word) {
 
   for (const k in lists) {
     if (lists[k].indexOf(commands[matches[0]]) > -1) {
-      log.info('classified ' + word + ' -> ' + k);
+      log.log('info', 'classified %s -> %s', word, k);
       return k;
     }
   }

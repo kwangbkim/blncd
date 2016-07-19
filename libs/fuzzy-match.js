@@ -9,10 +9,10 @@ function search(key, input, field, callback) {
   };
 
   tasksRepository.getAllTasks(key, function (err, tasks) {
-  	log.info('fuzzy search for: ' + key);
+    log.log('info', 'fuzzy search for key: %s, input: %s, field: %s', key, input, field);
     const f = new fuse(tasks, options);
     const result = f.search(input);
-    log.info('finished fuzzy search for: ' + key);
+    log.info('finished fuzzy search for key %s', key);
     callback(result);
   });
 }
