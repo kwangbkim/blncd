@@ -23,6 +23,7 @@
     "hat": "0.0.3",
     "jsrender": "^0.9.75",
     "mailin": "^3.0.3",
+    "moment": "^2.14.1",
     "mongodb": "^2.1.16",
     "mongoose": "^4.4.14",
     "nconf": "^0.8.4",
@@ -31,7 +32,8 @@
     "react-addons-css-transition-group": "^15.2.1",
     "react-dom": "^15.2.0",
     "request": "^2.71.0",
-    "sendgrid": "^2.0.0"
+    "sendgrid": "^2.0.0",
+    "winston": "^2.2.0"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "^0.3.3",

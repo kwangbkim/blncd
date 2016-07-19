@@ -1,8 +1,9 @@
 const repository = require('./tasks-repository');
 const fuzzy = require('./fuzzy-match');
+const log = require('./log');
 
 module.exports = function(key, description, callback) {
-  console.log('delete single task: ' + description);
+  log.info('delete single task: ' + description);
   fuzzy.search(key, description, 'description', function(tasks) {
     if (tasks[0]) {
       const bestMatch = tasks[0];

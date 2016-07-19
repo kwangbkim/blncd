@@ -1,4 +1,5 @@
 const fuse = require('./fuse');
+const log = require('./log');
 
 const lists = {
   'add': ['add', 'new'],
@@ -17,11 +18,12 @@ const commands = [
 const f = new fuse(commands);
 
 module.exports = function (word) {
+  log.info('classifying: ' + word);
   const matches = f.search(word);
 
   for (const k in lists) {
     if (lists[k].indexOf(commands[matches[0]]) > -1) {
-      console.log('matched command: ' + k);
+      log.info('classified ' + word + ' -> ' + k);
       return k;
     }
   }

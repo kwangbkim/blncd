@@ -2,6 +2,7 @@ const User = require('./user');
 const mongoose = require('mongoose');
 const hat = require('hat');
 const tasksRepository = require('./tasks-repository');
+const log = require('./log');
 
 module.exports = {
   getByEmail: getByEmail,
@@ -56,12 +57,14 @@ module.exports = {
 };
 
 function getByEmail(email, callback) {
+  log.info('find user by email: ' + email);
   User.findOne({
     email: email
   }, callback);
 }
 
 function getByKey(key, callback) {
+  log.info('find user by key: ' + key);
   User.findOne({
     key: key
   }, callback);

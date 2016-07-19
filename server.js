@@ -1,3 +1,4 @@
+const log = require('./libs/log');
 const express = require('express');
 const bodyParser = require('body-parser');
 const props = require('./libs/properties');
@@ -11,41 +12,41 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/install', (req, res) => {
-  console.log("get install page");
+  log.info("get install page");
   res.sendFile(path.join(__dirname, '/public/install.html'));
 });
 
 app.get('/usage', (req, res) => {
-  console.log("get usage page");
+  log.info("get usage page");
   res.sendFile(path.join(__dirname, '/public/usage.html'));
 });
 
 app.get('/api', (req, res) => {
-  console.log("get api page");
+  log.info("get api page");
   res.sendFile(path.join(__dirname, '/public/api.html'));
 });
 
 app.post('/api/requests', bodyParser.json(), (req, res) => {
-  console.log(req.body);
+  log.info(req.body);
   res.setHeader('Content-Type', 'application/json');
 
   const apiKey = req.body.key;
   usersRepository.getByKey(req.body.key, (err, user) => {
     if (err) {
-      console.log(err);
+      log.error(err);
       res.status(500).send({
         error: err
       });
     } else if (!user) {
       const msg = 'could not find user with api key: ' + apiKey;
-      console.log(msg);
+      log.info(msg);
       res.status(404).send({
         error: msg
       });
     } else {
       freeFormRequest(req.body.key, req.body.ask, (err, result) => {
         if (err) {
-          console.log(err);
+          log.error(err);
           res.status(500).send(JSON.stringify({
             error: err
           }));
@@ -57,13 +58,13 @@ app.post('/api/requests', bodyParser.json(), (req, res) => {
 });
 
 app.post('/api/users', bodyParser.json(), (req, res) => {
-  console.log('create new user:', req.body);
+  log.info('create new user:', req.body);
 
   res.setHeader('Content-Type', 'application/json');
   const email = req.body ? req.body.email : null;
   usersRepository.insert(email, (err, user) => {
     if (err) {
-      console.error(err);
+      log.error(err);
       res.status(400).send({
         message: 'could not create new user',
         error: err
@@ -78,11 +79,11 @@ app.post('/api/users', bodyParser.json(), (req, res) => {
 });
 
 app.put('/api/users/:key', bodyParser.json(), (req, res) => {
-  console.log("update user %s:", req.params.key, req.body);
+  log.info("update user %s:", req.params.key, req.body);
 
   usersRepository.update(req.params.key, req.body.email, (err, user) => {
     if (err) {
-      console.error(err);
+      log.error(err);
       res.status(500).send({
         message: 'could not update user',
         error: err
@@ -99,11 +100,11 @@ app.put('/api/users/:key', bodyParser.json(), (req, res) => {
 });
 
 app.delete('/api/users/:key', bodyParser.json(), (req, res) => {
-  console.log("delete user %s:", req.params.key, req.body);
+  log.info("delete user %s:", req.params.key, req.body);
 
   usersRepository.delete(req.params.key, (err, user) => {
     if (err) {
-      console.error(err);
+      log.error(err);
       res.status(500).send({
         message: 'could not update user',
         error: err
@@ -118,7 +119,7 @@ app.delete('/api/users/:key', bodyParser.json(), (req, res) => {
 
 const port = props.get('server:port');
 app.listen(port, function() {
-  console.log('Server running on port %d', port);
+  log.log('Server running on port %d', port);
 });
 
 module.exports = app;
