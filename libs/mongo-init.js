@@ -8,9 +8,19 @@ let mongoUrl = props.get("mongo:url")
 if (props.get('BLNCD_DB_REPLICA'))
 	mongoUrl = mongoUrl + "?replicaSet=" + props.get('BLNCD_DB_REPLICA');
 
-const options = {
+var options = {
+	server: {
+		socketOptions: {
+			keepAlive: 300000,
+			connectTimeoutMS: 30000
+		}
+	},
 	replset: {
-		poolSize: 5
+		poolSize: 5,
+		socketOptions: {
+			keepAlive: 300000,
+			connectTimeoutMS: 30000
+		}
 	}
 };
 
