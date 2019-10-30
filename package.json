@@ -25,7 +25,7 @@
     "mailin": "^3.0.3",
     "moment": "^2.14.1",
     "mongodb": "^2.1.16",
-    "mongoose": "^4.4.14",
+    "mongoose": "^5.7.7",
     "nconf": "^0.8.4",
     "nuka-carousel": "^2.0.2",
     "react": "^15.2.1",
