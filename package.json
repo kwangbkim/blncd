@@ -24,7 +24,7 @@
     "jsrender": "^0.9.75",
     "mailin": "^3.0.3",
     "moment": "^2.14.1",
-    "mongodb": "^2.1.16",
+    "mongodb": "^3.6.1",
     "mongoose": "^4.4.14",
     "nconf": "^0.8.4",
     "nuka-carousel": "^2.0.2",
