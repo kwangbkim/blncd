@@ -1,3 +1,5 @@
+![blncd](public/assets/banner.png)
+
 Home page: [http://blncd.io](http://blncd.io)
 
 A minimal, opinionated task list for developers.  Based on Stephen Covey's quadrant based time management grid.  Command line interface.  Use your email app/client/website for on the go access.
